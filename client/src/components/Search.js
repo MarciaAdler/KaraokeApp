@@ -9,12 +9,14 @@ export default function Search() {
   function getSongs(songRef) {
     console.log(songRef);
     dispatch({ type: LOADING });
-    API.getPosts(songRef)
+    API.getSongs(songRef)
       .then(results => {
-        dispatch({
-          type: SET_SONG_RESULTS,
-          results: results.data
-        });
+        console.log(results.data.message.body.track_list);
+
+        // dispatch({
+        //   type: SET_SONG_RESULTS,
+        //   results: results.data
+        // });
       })
       .catch(err => console.log(err));
   }

@@ -10,7 +10,7 @@ const reducer = (state, action) => {
     case SET_SONG_RESULTS:
       return {
         ...state,
-        currentSong: action.song,
+        results: action.results,
         loading: false
       };
     default:

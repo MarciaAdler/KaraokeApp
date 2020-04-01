@@ -5,9 +5,9 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const Sequelize = require("sequelize");
 var db = require("./models");
-const comments = require("./routes/comments");
+const songs = require("./routes/songs");
 
-const user = require("./routes/user");
+// const user = require("./routes/user");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -18,12 +18,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-app.use(comments);
-
-app.use(user);
 
 // Define API routes here
-
+app.use(songs);
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {

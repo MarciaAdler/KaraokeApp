@@ -1,9 +1,6 @@
-import React, { useRef } from "react";
-import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
+import React from "react";
+import { Nav, Navbar } from "react-bootstrap";
 import Search from "../components/Search";
-import { SET_SONG_RESULTS } from "../utils/actions";
-import { useStoreContext } from "../utils/GlobalState";
-import API from "../utils/API";
 
 export default function Navigation() {
   return (
