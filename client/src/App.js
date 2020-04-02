@@ -1,15 +1,21 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Nav from "./components/Nav";
+import Navigation from "./components/Nav";
 import Home from "./pages/Home";
 import { StoreProvider } from "../src/utils/GlobalState";
+import Song from "./pages/Song";
 
 function App() {
   return (
     <div className="App">
       <StoreProvider>
-        <Home />
+        <Navigation />
+        {/* <Home /> */}
+        
+        <Song />
       </StoreProvider>
+        
+      
     </div>
   );
 }

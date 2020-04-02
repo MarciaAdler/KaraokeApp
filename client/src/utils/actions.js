@@ -1,2 +1,3 @@
 export const SET_SONG_RESULTS = "SET_SONG_RESULTS";
+export const GET_CURRENT_SONG = "GET_CURRENT_SONG";
 export const LOADING = "LOADING";

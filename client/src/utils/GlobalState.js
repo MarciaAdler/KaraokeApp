@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useContext } from "react";
 
-import { SET_SONG_RESULTS } from "./actions";
+import { SET_SONG_RESULTS, GET_CURRENT_SONG } from "./actions";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -13,6 +13,10 @@ const reducer = (state, action) => {
         results: action.results,
         loading: false
       };
+      // case SET_CURRENT_SONG:
+      //   return{
+
+      //   }
     default:
       return state;
   }
@@ -22,9 +26,11 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     results: [],
     currentSong: {
-      id: 0,
+      id: "",
       title: "",
-      artist: ""
+      artist: "",
+      year: "",
+      styles: ""
     },
     saved: [],
     loading: false
