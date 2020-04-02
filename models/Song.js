@@ -2,13 +2,18 @@ const Sequelize = require("sequelize");
 
 module.exports = function(sequelize, DataTypes) {
   const Song = sequelize.define("Song", {
-    song_id: Sequelize.INTEGER,
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true
+    },
     title: Sequelize.STRING,
     artist: Sequelize.STRING,
     year: Sequelize.INTEGER,
     duo: Sequelize.INTEGER,
+    explicit: Sequelize.INTEGER,
+    date_added: Sequelize.DATE,
     styles: Sequelize.STRING,
-    explicit: Sequelize.INTEGER
+    languages: Sequelize.STRING
   });
 
   return Song;
