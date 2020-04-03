@@ -1,10 +1,11 @@
 const Sequelize = require("sequelize");
+
 module.exports = function(sequelize, DataTypes) {
   const Song = sequelize.define("Song", {
     id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true
-    }
+      type: Sequelize.INTEGER,
+      primaryKey: true
+    },
     title: Sequelize.STRING,
     artist: Sequelize.STRING,
     year: Sequelize.INTEGER,
@@ -14,5 +15,6 @@ module.exports = function(sequelize, DataTypes) {
     styles: Sequelize.STRING,
     languages: Sequelize.STRING
   });
+
   return Song;
 };
