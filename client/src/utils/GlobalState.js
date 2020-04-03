@@ -23,11 +23,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentSong: {
-          id: state.id,
-          title: state.title,
-          artist: state.artist,
-          year: state.artist,
-          styles: state.styles
+          id: action.currentSong.id,
+          title: action.currentSong.title,
+          artist: action.currentSong.artist,
+          year: action.currentSong.year,
+          styles: action.currentSong.styles
         },
         loading: false
       };
@@ -40,10 +40,10 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     results: [],
     currentSong: {
-      id: "",
+      id: 0,
       title: "",
       artist: "",
-      year: "",
+      year: 1984,
       styles: ""
     },
     saved: [],

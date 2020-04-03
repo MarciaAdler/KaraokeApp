@@ -6,10 +6,23 @@ import API from "../utils/API";
 
 export default function ResultSong(props) {
   const [state, dispatch] = useStoreContext();
-  function selectSong() {
-    console.log(state);
-    dispatch({ type: SET_CURRENT_SONG, song: state.song });
+
+  function selectSong(result) {
+    const song = {
+      id: result.id,
+      title: result.title,
+      artist: result.artist,
+      year: result.year,
+      styles: result.styles
+    };
+
+    dispatch({
+      type: SET_CURRENT_SONG,
+      currentSong: song
+    });
+    console.log(state.currentSong);
   }
+
   return (
     <div>
       {state.results.length
@@ -25,7 +38,14 @@ export default function ResultSong(props) {
               <br />
               Duo: {result.duo === 0 ? "false" : "true"}
               <br />
-              <button onClick={selectSong}>Select</button>
+              Styles: {result.styles}
+              <button
+                onClick={() => {
+                  selectSong(result);
+                }}
+              >
+                Select
+              </button>
             </div>
           ))
         : "no songs"}
