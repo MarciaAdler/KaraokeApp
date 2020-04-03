@@ -1,9 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
-import { SET_SONG_RESULTS, LOADING } from "../utils/actions";
+import { SET_SONG_RESULTS, LOADING, CLEAR_RESULTS } from "../utils/actions";
 import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
+import { Redirect } from "react-router-dom";
+
 export default function Search() {
+  const [redirect, setRedirect] = useState(false);
   const songRef = useRef();
   const [state, dispatch] = useStoreContext();
   function getSongs(songRef) {
@@ -11,15 +14,23 @@ export default function Search() {
     dispatch({ type: LOADING });
     API.getSongs(songRef)
       .then(results => {
-        console.log(results.data.message.body.track_list);
+        console.log(results);
 
-        // dispatch({
-        //   type: SET_SONG_RESULTS,
-        //   results: results.data
-        // });
+        dispatch({
+          type: SET_SONG_RESULTS,
+          results: results.data
+        });
+        setRedirect(true);
       })
+
       .catch(err => console.log(err));
   }
+
+  const renderRedirect = () => {
+    if (state.results && redirect) {
+      return <Redirect to="/searchresults" />;
+    }
+  };
   const handleSubmit = e => {
     e.preventDefault();
     console.log(songRef.current.value);
@@ -47,6 +58,7 @@ export default function Search() {
           </InputGroup.Append>
         </InputGroup>
       </Form>
+      {renderRedirect()}
     </div>
   );
 }

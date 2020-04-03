@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const axios = require("axios");
+const resultsController = require("../controllers/resultsController");
 
 // router.get("/api/songs/:id", (req, res) => {
 //   console.log(req);
@@ -14,10 +15,11 @@ const axios = require("axios");
 // });
 
 router.get("/api/video/:id", (req, res) => {
-  const queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCbqcG1rdt9LMwOJN4PyGTKg&maxResults=1&q=${req.params.id}&type=video&key=${process.env.YOUTUBE_KEY}`
+  const queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCbqcG1rdt9LMwOJN4PyGTKg&maxResults=1&q=${req.params.id}&type=video&key=${process.env.YOUTUBE_KEY}`;
 
   res.send(queryURL);
-
 });
+
+router.route("/api/results/:title").get(resultsController.findAll);
 
 module.exports = router;
