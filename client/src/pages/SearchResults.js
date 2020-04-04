@@ -27,7 +27,7 @@ export default function SearchResults(props) {
     console.log(state.currentSong);
   }
   const renderRedirect = () => {
-    if (state.results && redirect) {
+    if (state.currentSong && redirect) {
       return <Redirect to="/song" />;
     }
   };

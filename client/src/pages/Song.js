@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { LOADING, SET_CURRENT_SONG } from "../utils/actions";
 import API from "../utils/API";
@@ -8,15 +8,26 @@ import SelectedSong from "../components/SelectedSong";
 
 function Song(props) {
   const [state, dispatch] = useStoreContext();
+  const [video, setVideo] = useState();
 
   useEffect(() => {
     loadSong();
-  });
+  }, []);
+  function getVideo(currentSong) {
+    console.log(currentSong);
+    //     API.getVideo(currentSong)
+    //       .then((req, res) => {
+    //         console.log(res);
+    //         setVideo();
+    //       })
+    //       .catch(err => console.log(err));
+  }
   function loadSong() {
     dispatch({
       type: SET_CURRENT_SONG,
       currentSong: state.currentSong
     });
+    getVideo(state.currentSong);
   }
   return (
     <div>
