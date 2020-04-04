@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 export default function SearchResults(props) {
   const [redirect, setRedirect] = useState(false);
   const [state, dispatch] = useStoreContext();
-  //   const [redirect, setRedirect] = useState(false);
+
   function selectSong(result) {
     const song = {
       id: result.id,
