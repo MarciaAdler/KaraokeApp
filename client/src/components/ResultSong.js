@@ -7,48 +7,50 @@ import API from "../utils/API";
 export default function ResultSong(props) {
   const [state, dispatch] = useStoreContext();
 
-  function selectSong(result) {
-    const song = {
-      id: result.id,
-      title: result.title,
-      artist: result.artist,
-      year: result.year,
-      styles: result.styles
-    };
+  //   function selectSong(result) {
+  //     const song = {
+  //       id: result.id,
+  //       title: result.title,
+  //       artist: result.artist,
+  //       year: result.year,
+  //       duo: result.duo,
+  //       explicit: result.explicit,
+  //       styles: result.styles
+  //     };
 
-    dispatch({
-      type: SET_CURRENT_SONG,
-      currentSong: song
-    });
-    console.log(state.currentSong);
-  }
+  //     dispatch({
+  //       type: SET_CURRENT_SONG,
+  //       currentSong: song
+  //     });
+  //     console.log(state.currentSong);
+  //   }
 
   return (
     <div>
-      {state.results.length
-        ? state.results.map(result => (
-            <div key={result.id}>
-              Title: {result.title}
-              <br />
-              Artist: {result.artist}
-              <br />
-              Year: {result.year}
-              <br />
-              Explicit: {result.explicit === 0 ? "false" : "true"}
-              <br />
-              Duo: {result.duo === 0 ? "false" : "true"}
-              <br />
-              Styles: {result.styles}
-              <button
-                onClick={() => {
-                  selectSong(result);
-                }}
-              >
-                Select
-              </button>
-            </div>
-          ))
-        : "no songs"}
+      {/* {state.results.length
+        ? state.results.map(result => ( */}
+      <div key={props.id}>
+        Title: {props.title}
+        <br />
+        Artist: {props.artist}
+        <br />
+        Year: {props.year}
+        <br />
+        Explicit: {props.explicit === 0 ? "false" : "true"}
+        <br />
+        Duo: {props.duo === 0 ? "false" : "true"}
+        <br />
+        Styles: {props.styles}
+        <br />
+        <button
+          onClick={() => {
+            props.selectSong(props);
+          }}
+        >
+          Select
+        </button>
+      </div>
+      {/* )) : "no songs"} */}
     </div>
   );
 }
