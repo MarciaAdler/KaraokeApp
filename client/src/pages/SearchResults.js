@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { LOADING, CLEAR_RESULTS, SET_CURRENT_SONG } from "../utils/actions";
 import ResultSong from "../components/ResultSong";
+import { Redirect } from "react-router-dom";
 export default function SearchResults(props) {
+  const [redirect, setRedirect] = useState(false);
   const [state, dispatch] = useStoreContext();
   //   const [redirect, setRedirect] = useState(false);
   function selectSong(result) {
@@ -21,14 +23,14 @@ export default function SearchResults(props) {
       type: SET_CURRENT_SONG,
       currentSong: song
     });
-    // setRedirect(true);
-    // console.log(state.currentSong);
+    setRedirect(true);
+    console.log(state.currentSong);
   }
-  //   const renderRedirect = () => {
-  //     if (state.results && redirect) {
-  //       return <Redirect to="/song" />;
-  //     }
-  //   };
+  const renderRedirect = () => {
+    if (state.results && redirect) {
+      return <Redirect to="/song" />;
+    }
+  };
   return (
     <div>
       {state.results.length
@@ -46,6 +48,7 @@ export default function SearchResults(props) {
             />
           ))
         : "no songs"}
+      {renderRedirect()}
     </div>
   );
 }
