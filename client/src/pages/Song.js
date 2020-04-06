@@ -12,6 +12,7 @@ function Song(props) {
   const [state, dispatch] = useStoreContext();
   const [video, setVideo] = useState("");
   const [lyrics, setLyrics] = useState([]);
+  const [artwork, setArtwork] = useState("");
 
   useEffect(() => {
     loadSong();
@@ -34,7 +35,13 @@ function Song(props) {
       })
       .catch(err => console.log(err));
   }
-
+  function getImage(currentSong) {
+    API.getImage(currentSong)
+      .then(res => {
+        setArtwork(res.data);
+      })
+      .catch(err => console.log(err));
+  }
   function loadSong() {
     dispatch({
       type: SET_CURRENT_SONG,
@@ -42,12 +49,14 @@ function Song(props) {
     });
     getVideo(state.currentSong);
     getLyrics(state.currentSong);
+    getImage(state.currentSong);
   }
   return (
     <div>
       <Container fluid>
         <Video video={video} />
         <SelectedSong
+          artwork={artwork}
           selectSong={state.currentSong.selectSong}
           key={state.currentSong.id}
           id={state.currentSong.id}

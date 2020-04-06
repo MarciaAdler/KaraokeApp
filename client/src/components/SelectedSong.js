@@ -10,6 +10,7 @@ export default function SelectedSong(props) {
   return (
     <div>
       <div key={state.currentSong.id}>
+        <img src={props.artwork} alt={state.currentSong.title} />
         Title: {state.currentSong.title}
         <br />
         Artist: {state.currentSong.artist}

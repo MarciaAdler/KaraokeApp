@@ -9,7 +9,7 @@ router.get("/api/lyrics/:title", (req, res) => {
   genius
     .search(req.params.title)
     .then(async function(response) {
-      console.log("hits", response.hits);
+      // console.log("hits", response.hits);
       const browser = await puppeteer.launch();
 
       const page = await browser.newPage();
@@ -17,10 +17,14 @@ router.get("/api/lyrics/:title", (req, res) => {
       const lyrics = await page.evaluate(
         () => document.querySelector(".lyrics").innerText
       );
-
       await browser.close();
       res.send(lyrics);
     })
     .catch(function(error) {});
+});
+router.get("/api/image/:title", (req, res) => {
+  genius.search(req.params.title).then(response => {
+    res.send(response.hits[0].result.song_art_image_thumbnail_url);
+  });
 });
 module.exports = router;

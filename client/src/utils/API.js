@@ -16,5 +16,11 @@ export default {
     return axios.get(
       "/api/lyrics/" + currentSong.title + "-" + currentSong.artist
     );
+  },
+
+  getImage: function(currentSong) {
+    return axios.get(
+      "/api/image/" + currentSong.title + "-" + currentSong.artist
+    );
   }
 };
