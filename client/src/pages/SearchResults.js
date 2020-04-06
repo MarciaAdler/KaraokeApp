@@ -10,20 +10,7 @@ export default function SearchResults(props) {
 
   return (
     <div>
-      {state.results.length
-        ? state.results.map(result => (
-            <ResultSong
-              key={result.id}
-              id={result.id}
-              title={result.title}
-              artist={result.artist}
-              year={result.year}
-              duo={result.duo}
-              explicit={result.explicit}
-              styles={result.styles}
-            />
-          ))
-        : "no songs"}
+      <ResultSong />
     </div>
   );
 }
