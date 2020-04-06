@@ -12,6 +12,7 @@ export default function Search() {
   function getSongs(songRef) {
     console.log(songRef);
     dispatch({ type: LOADING });
+    setRedirect(false);
     API.getSongs(songRef)
       .then(results => {
         console.log(results);

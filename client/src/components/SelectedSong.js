@@ -9,22 +9,22 @@ export default function SelectedSong(props) {
 
   return (
     <div>
-      <div key={props.id}>
-        Title: {props.title}
+      <div key={state.currentSong.id}>
+        Title: {state.currentSong.title}
         <br />
-        Artist: {props.artist}
+        Artist: {state.currentSong.artist}
         <br />
-        Year: {props.year}
+        Year: {state.currentSong.year}
         <br />
-        Explicit: {props.explicit === 0 ? "false" : "true"}
+        Explicit: {state.currentSong.explicit === 0 ? "false" : "true"}
         <br />
-        Duo: {props.duo === 0 ? "false" : "true"}
+        Duo: {state.currentSong.duo === 0 ? "false" : "true"}
         <br />
-        Styles: {props.styles}
+        Styles: {state.currentSong.styles}
         <br />
         <button
           onClick={() => {
-            props.saveSong(props);
+            state.currentSong.saveSong(props);
           }}
         >
           Save
