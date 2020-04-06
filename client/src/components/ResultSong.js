@@ -29,7 +29,11 @@ export default function ResultSong(props) {
   }
   const renderRedirect = () => {
     if (state.currentSong && redirect) {
-      return <Redirect to="/song" />;
+      return (
+        <Redirect
+          to={`/song/${state.currentSong.title}-${state.currentSong.artist}`}
+        />
+      );
     }
   };
   return (
