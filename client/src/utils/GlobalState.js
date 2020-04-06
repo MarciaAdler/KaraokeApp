@@ -27,6 +27,8 @@ const reducer = (state, action) => {
           title: action.currentSong.title,
           artist: action.currentSong.artist,
           year: action.currentSong.year,
+          duo: action.currentSong.duo,
+          explicit: action.currentSong.explicit,
           styles: action.currentSong.styles
         },
         loading: false

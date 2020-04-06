@@ -16,7 +16,8 @@ function App() {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/searchresults" component={SearchResults} />
+            <Route path="/searchresults" component={SearchResults} />
+            <Route path="/song" component={Song} />
           </Switch>
         </Router>
       </StoreProvider>
