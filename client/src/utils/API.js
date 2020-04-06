@@ -10,5 +10,11 @@ export default {
     return axios.get(
       "/api/song/" + currentSong.title + "-" + currentSong.artist
     );
+  },
+
+  getLyrics: function(currentSong) {
+    return axios.get(
+      "/api/lyrics/" + currentSong.title + "-" + currentSong.artist
+    );
   }
 };

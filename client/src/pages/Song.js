@@ -10,12 +10,12 @@ import Video from "../components/Video";
 function Song(props) {
   const [state, dispatch] = useStoreContext();
   const [video, setVideo] = useState("");
+  const [lyrics, setLyrics] = useState("");
 
   useEffect(() => {
     loadSong();
   }, []);
   function getVideo(currentSong) {
-    console.log(currentSong);
     API.getVideo(currentSong)
       .then(res => {
         const id = res.data.items[0].id.videoId;
@@ -24,12 +24,21 @@ function Song(props) {
       })
       .catch(err => console.log(err));
   }
+  function getLyrics(currentSong) {
+    API.getLyrics(currentSong).then(res => {
+      console.log("lyrics");
+      console.log(res.data);
+      setLyrics(res.data);
+    });
+  }
+
   function loadSong() {
     dispatch({
       type: SET_CURRENT_SONG,
       currentSong: state.currentSong
     });
     getVideo(state.currentSong);
+    getLyrics(state.currentSong);
   }
   return (
     <div>
