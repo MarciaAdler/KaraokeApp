@@ -15,15 +15,12 @@ router.get("/api/lyrics/:title", (req, res) => {
       const page = await browser.newPage();
       await page.goto(response.hits[0].result.url);
       const lyrics = await page.evaluate(
-        () => document.querySelector(".lyrics").textContent
+        () => document.querySelector(".lyrics").innerText
       );
-      console.log(lyrics);
 
       await browser.close();
-      return lyrics;
+      res.send(lyrics);
     })
-    .catch(function(error) {
-      console.error(error);
-    });
+    .catch(function(error) {});
 });
 module.exports = router;

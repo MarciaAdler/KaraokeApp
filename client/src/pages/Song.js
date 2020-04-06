@@ -6,11 +6,12 @@ import Navigation from "../components/Nav";
 import { Container, Row, Col } from "react-bootstrap";
 import SelectedSong from "../components/SelectedSong";
 import Video from "../components/Video";
+import Lyrics from "../components/Lyrics";
 
 function Song(props) {
   const [state, dispatch] = useStoreContext();
   const [video, setVideo] = useState("");
-  const [lyrics, setLyrics] = useState("");
+  const [lyrics, setLyrics] = useState([]);
 
   useEffect(() => {
     loadSong();
@@ -19,17 +20,19 @@ function Song(props) {
     API.getVideo(currentSong)
       .then(res => {
         const id = res.data.items[0].id.videoId;
-        console.log(id);
+
         setVideo(id);
       })
       .catch(err => console.log(err));
   }
   function getLyrics(currentSong) {
-    API.getLyrics(currentSong).then(res => {
-      console.log("lyrics");
-      console.log(res.data);
-      setLyrics(res.data);
-    });
+    API.getLyrics(currentSong)
+      .then(res => {
+        console.log(res.data);
+        const lines = res.data.split("\n");
+        setLyrics(lines);
+      })
+      .catch(err => console.log(err));
   }
 
   function loadSong() {
@@ -55,6 +58,7 @@ function Song(props) {
           explicit={state.currentSong.explicit}
           styles={state.currentSong.styles}
         />
+        <Lyrics lyrics={lyrics} />
       </Container>
     </div>
   );
