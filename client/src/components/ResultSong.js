@@ -1,56 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_SONG } from "../utils/actions";
+import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 
 export default function ResultSong(props) {
   const [state, dispatch] = useStoreContext();
+  const [redirect, setRedirect] = useState(false);
+  function selectSong(result) {
+    const song = {
+      id: result.id,
+      title: result.title,
+      artist: result.artist,
+      year: result.year,
+      duo: result.duo,
+      explicit: result.explicit,
+      styles: result.styles
+    };
 
-  //   function selectSong(result) {
-  //     const song = {
-  //       id: result.id,
-  //       title: result.title,
-  //       artist: result.artist,
-  //       year: result.year,
-  //       duo: result.duo,
-  //       explicit: result.explicit,
-  //       styles: result.styles
-  //     };
+    dispatch({
+      type: SET_CURRENT_SONG,
+      currentSong: song
+    });
+    setRedirect(true);
 
-  //     dispatch({
-  //       type: SET_CURRENT_SONG,
-  //       currentSong: song
-  //     });
-  //     console.log(state.currentSong);
-  //   }
-
+    console.log(state.currentSong);
+  }
+  const renderRedirect = () => {
+    if (state.currentSong && redirect) {
+      return <Redirect to="/song" />;
+    }
+  };
   return (
     <div>
-      {/* {state.results.length
-        ? state.results.map(result => ( */}
-      <div key={props.id}>
-        Title: {props.title}
-        <br />
-        Artist: {props.artist}
-        <br />
-        Year: {props.year}
-        <br />
-        Explicit: {props.explicit === 0 ? "false" : "true"}
-        <br />
-        Duo: {props.duo === 0 ? "false" : "true"}
-        <br />
-        Styles: {props.styles}
-        <br />
-        <button
-          onClick={() => {
-            props.selectSong(props);
-          }}
-        >
-          Select
-        </button>
-      </div>
-      {/* )) : "no songs"} */}
+      {state.results.length
+        ? state.results.map(result => (
+            <div key={result.id}>
+              Title: {result.title}
+              <br />
+              Artist: {result.artist}
+              <br />
+              Year: {result.year}
+              <br />
+              Explicit: {result.explicit === 0 ? "false" : "true"}
+              <br />
+              Duo: {result.duo === 0 ? "false" : "true"}
+              <br />
+              Styles: {result.styles}
+              <br />
+              <button
+                onClick={() => {
+                  selectSong(result);
+                }}
+              >
+                Select
+              </button>
+            </div>
+          ))
+        : "no songs"}
+      {renderRedirect()}
     </div>
   );
 }
