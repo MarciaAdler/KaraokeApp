@@ -7,6 +7,8 @@ export default {
   },
 
   getVideo: function(currentSong) {
-    return axios.get("/api/song", currentSong);
+    return axios.get(
+      "/api/song/" + currentSong.title + "-" + currentSong.artist
+    );
   }
 };

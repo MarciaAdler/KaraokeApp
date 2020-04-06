@@ -15,9 +15,10 @@ const resultsController = require("../controllers/resultsController");
 // });
 
 router.get("/api/song/:title", (req, res) => {
-  const queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCbqcG1rdt9LMwOJN4PyGTKg&maxResults=1&q=${req.params.title}&type=video&key=${process.env.YOUTUBE_KEY}`;
-
-  res.send(queryURL);
+  const queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${req.params.title}-karaoke&type=video&key=${process.env.YOUTUBE_KEY}`;
+  axios.get(queryURL).then(response => {
+    res.send(response.data);
+  });
 });
 
 router.route("/api/searchresults/:title").get(resultsController.findAll);

@@ -5,22 +5,24 @@ import API from "../utils/API";
 import Navigation from "../components/Nav";
 import { Container, Row, Col } from "react-bootstrap";
 import SelectedSong from "../components/SelectedSong";
+import Video from "../components/Video";
 
 function Song(props) {
   const [state, dispatch] = useStoreContext();
-  const [video, setVideo] = useState();
+  const [video, setVideo] = useState("");
 
   useEffect(() => {
     loadSong();
   }, []);
   function getVideo(currentSong) {
     console.log(currentSong);
-    //     API.getVideo(currentSong)
-    //       .then((req, res) => {
-    //         console.log(res);
-    //         setVideo();
-    //       })
-    //       .catch(err => console.log(err));
+    API.getVideo(currentSong)
+      .then(res => {
+        const id = res.data.items[0].id.videoId;
+        console.log(id);
+        setVideo(id);
+      })
+      .catch(err => console.log(err));
   }
   function loadSong() {
     dispatch({
@@ -32,6 +34,7 @@ function Song(props) {
   return (
     <div>
       <Container fluid>
+        <Video video={video} />
         <SelectedSong
           selectSong={state.currentSong.selectSong}
           key={state.currentSong.id}
