@@ -41,9 +41,7 @@ const reducer = (state, action) => {
     case SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: {
-          username: action.currentUser.username
-        }
+        currentUser: action.currentUser
       };
     default:
       return state;
@@ -60,9 +58,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       year: 1984,
       styles: ""
     },
-    currentUser: {
-      username: ""
-    },
+    currentUser: "",
     saved: [],
     loading: false
   });
