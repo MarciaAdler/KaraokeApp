@@ -54,7 +54,6 @@ function Song(props) {
   return (
     <div>
       <Container fluid>
-        <Video video={video} />
         <SelectedSong
           artwork={artwork}
           selectSong={state.currentSong.selectSong}
@@ -67,7 +66,14 @@ function Song(props) {
           explicit={state.currentSong.explicit}
           styles={state.currentSong.styles}
         />
-        <Lyrics lyrics={lyrics} />
+        <Row>
+          <Col>
+            <Lyrics lyrics={lyrics} />
+          </Col>
+          <Col>
+            <Video video={video} />
+          </Col>
+        </Row>
       </Container>
     </div>
   );
