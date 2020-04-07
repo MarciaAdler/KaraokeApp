@@ -8,6 +8,7 @@ var db = require("./models");
 const songs = require("./routes/songs");
 const passport = require("passport");
 const lyrics = require("./routes/lyrics");
+const users = require("./routes/users");
 
 // const user = require("./routes/user");
 
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === "production") {
 // Define API routes here
 app.use(songs);
 app.use(lyrics);
+app.use(users);
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {

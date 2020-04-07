@@ -6,6 +6,8 @@ import { StoreProvider } from "../src/utils/GlobalState";
 import Song from "./pages/Song";
 import SearchResults from "./pages/SearchResults";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
 
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
             <Route path="/searchresults" component={SearchResults} />
             <Route path="/song" component={Song} />
           </Switch>

@@ -13,8 +13,8 @@ export default function Navigation() {
 
           <Search />
 
-          <Nav.Link href="#login">Login</Nav.Link>
-          <Nav.Link href="#signup">Signup</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link href="/signup">Signup</Nav.Link>
         </Nav>
       </Navbar>
     </div>

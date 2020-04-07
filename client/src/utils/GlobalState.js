@@ -1,6 +1,11 @@
 import React, { createContext, useReducer, useContext } from "react";
 
-import { SET_SONG_RESULTS, CLEAR_RESULTS, SET_CURRENT_SONG } from "./actions";
+import {
+  SET_SONG_RESULTS,
+  CLEAR_RESULTS,
+  SET_CURRENT_SONG,
+  SET_CURRENT_USER
+} from "./actions";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -33,6 +38,13 @@ const reducer = (state, action) => {
         },
         loading: false
       };
+    case SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: {
+          username: action.currentUser.username
+        }
+      };
     default:
       return state;
   }
@@ -47,6 +59,9 @@ const StoreProvider = ({ value = [], ...props }) => {
       artist: "",
       year: 1984,
       styles: ""
+    },
+    currentUser: {
+      username: ""
     },
     saved: [],
     loading: false
