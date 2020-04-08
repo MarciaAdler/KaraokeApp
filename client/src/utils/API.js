@@ -22,5 +22,11 @@ export default {
     return axios.get(
       "/api/image/" + currentSong.title + "-" + currentSong.artist
     );
+  },
+  createUser: function(req) {
+    return axios.post("/api/signup", req);
+  },
+  getUser: function(req) {
+    return axios.post("/api/login", req);
   }
 };
