@@ -84,32 +84,6 @@ function Song(props) {
       getLyrics(state.currentSong);
       getImage(state.currentSong);
     }
-  
-      
-   
-      // API.getSongFromURL(url.replace("?", ""))
-      // .then(res => {
-      //   const song = {
-      //     id: res.data.id,
-      //     title: res.data.title,
-      //     artist: res.data.artist,
-      //     year: res.data.year,
-      //     duo: res.data.duo,
-      //     explicit: res.data.explicit,
-      //     styles: res.data.styles
-      //   };
-
-      //     dispatch({
-      //       type: SET_CURRENT_SONG,
-      //       currentSong: song
-      //     });
-
-      //     getVideo(song);
-      //     getLyrics(song);
-      //     getImage(song);
-      // })
-      // .catch(err => console.log(err));
-      
 
       
   }
