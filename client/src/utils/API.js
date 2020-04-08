@@ -5,7 +5,10 @@ export default {
     const input = req;
     return axios.get("/api/searchresults/" + input);
   },
-
+  getSongFromURL: function(req, res) {
+    console.log(req);
+    return axios.get("/api/result/" + req);
+  },
   getVideo: function(currentSong) {
     return axios.get(
       "/api/song/" + currentSong.title + "-" + currentSong.artist

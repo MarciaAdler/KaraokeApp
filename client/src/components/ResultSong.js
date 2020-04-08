@@ -30,10 +30,13 @@ export default function ResultSong(props) {
   const renderRedirect = () => {
     if (state.currentSong && redirect) {
       return (
-        <Redirect
-          to={`/song/${state.currentSong.title}-${state.currentSong.artist}`}
-        />
-      );
+        // <Redirect push to={`/song/${state.currentSong.title}-${state.currentSong.artist}`}
+        // />
+        <Redirect push to={{
+          pathname: "/song",
+          search: `?title=${state.currentSong.title}&&artist=${state.currentSong.artist}`
+        }} />
+      )
     }
   };
   return (

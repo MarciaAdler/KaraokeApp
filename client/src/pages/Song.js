@@ -15,8 +15,10 @@ function Song(props) {
   const [artwork, setArtwork] = useState("");
 
   useEffect(() => {
-    loadSong();
+    // console.log(window.location.search);
+    loadSong(window.location.search);
   }, []);
+
   function getVideo(currentSong) {
     API.getVideo(currentSong)
       .then(res => {
@@ -26,15 +28,17 @@ function Song(props) {
       })
       .catch(err => console.log(err));
   }
+
   function getLyrics(currentSong) {
     API.getLyrics(currentSong)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         const lines = res.data.split("\n");
         setLyrics(lines);
       })
       .catch(err => console.log(err));
   }
+
   function getImage(currentSong) {
     API.getImage(currentSong)
       .then(res => {
@@ -42,15 +46,75 @@ function Song(props) {
       })
       .catch(err => console.log(err));
   }
-  function loadSong() {
-    dispatch({
-      type: SET_CURRENT_SONG,
-      currentSong: state.currentSong
-    });
-    getVideo(state.currentSong);
-    getLyrics(state.currentSong);
-    getImage(state.currentSong);
+
+  function loadSong(url) {
+    console.log("From loadSong function: ");
+    console.log(url);
+    
+    if (state.currentSong.artist === "") {
+        API.getSongFromURL(url.replace("?", ""))
+      .then(res => {
+        const song = {
+          id: res.data.id,
+          title: res.data.title,
+          artist: res.data.artist,
+          year: res.data.year,
+          duo: res.data.duo,
+          explicit: res.data.explicit,
+          styles: res.data.styles
+        };
+
+          dispatch({
+            type: SET_CURRENT_SONG,
+            currentSong: song
+          });
+
+          // getVideo(song);
+          getLyrics(song);
+          getImage(song);
+      })
+      .catch(err => console.log(err));
+    } else {
+      dispatch({
+        type: SET_CURRENT_SONG,
+        currentSong: state.currentSong
+      });
+      
+      // getVideo(state.currentSong);
+      getLyrics(state.currentSong);
+      getImage(state.currentSong);
+    }
+  
+      
+   
+      // API.getSongFromURL(url.replace("?", ""))
+      // .then(res => {
+      //   const song = {
+      //     id: res.data.id,
+      //     title: res.data.title,
+      //     artist: res.data.artist,
+      //     year: res.data.year,
+      //     duo: res.data.duo,
+      //     explicit: res.data.explicit,
+      //     styles: res.data.styles
+      //   };
+
+      //     dispatch({
+      //       type: SET_CURRENT_SONG,
+      //       currentSong: song
+      //     });
+
+      //     getVideo(song);
+      //     getLyrics(song);
+      //     getImage(song);
+      // })
+      // .catch(err => console.log(err));
+      
+
+      
   }
+
+
   return (
     <div>
       <Container fluid>
@@ -71,7 +135,7 @@ function Song(props) {
             <Lyrics lyrics={lyrics} />
           </Col>
           <Col>
-            <Video video={video} />
+            {/* <Video video={video} /> */}
           </Col>
         </Row>
       </Container>

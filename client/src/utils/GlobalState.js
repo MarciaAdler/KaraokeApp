@@ -55,6 +55,8 @@ const StoreProvider = ({ value = [], ...props }) => {
       id: 0,
       title: "",
       artist: "",
+      duo: 0,
+      explicit: 0,
       year: 1984,
       styles: ""
     },

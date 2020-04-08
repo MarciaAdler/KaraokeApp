@@ -15,6 +15,7 @@ const resultsController = require("../controllers/resultsController");
 // });
 
 router.get("/api/song/:title", (req, res) => {
+  // const query = req.params.title; 
   const queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${req.params.title}-karaoke&type=video&key=${process.env.YOUTUBE_KEY}&videoEmbeddable=true`;
   axios.get(queryURL).then(response => {
     res.send(response.data);
@@ -22,5 +23,7 @@ router.get("/api/song/:title", (req, res) => {
 });
 
 router.route("/api/searchresults/:title").get(resultsController.findAll);
+
+router.route("/api/result/:query").get(resultsController.findOne);
 
 module.exports = router;
