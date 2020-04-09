@@ -21,73 +21,70 @@ function Song(props) {
 
   function getVideo(currentSong) {
     API.getVideo(currentSong)
-      .then(res => {
+      .then((res) => {
         const id = res.data.items[0].id.videoId;
 
         setVideo(id);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   function getLyrics(currentSong) {
     API.getLyrics(currentSong)
-      .then(res => {
+      .then((res) => {
         // console.log(res.data);
         const lines = res.data.split("\n");
         setLyrics(lines);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   function getImage(currentSong) {
     API.getImage(currentSong)
-      .then(res => {
+      .then((res) => {
         setArtwork(res.data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   function loadSong(url) {
     console.log("From loadSong function: ");
     console.log(url);
-    
+
     if (state.currentSong.artist === "") {
-        API.getSongFromURL(url.replace("?", ""))
-      .then(res => {
-        const song = {
-          id: res.data.id,
-          title: res.data.title,
-          artist: res.data.artist,
-          year: res.data.year,
-          duo: res.data.duo,
-          explicit: res.data.explicit,
-          styles: res.data.styles
-        };
+      API.getSongFromURL(url.replace("?", ""))
+        .then((res) => {
+          const song = {
+            id: res.data.id,
+            title: res.data.title,
+            artist: res.data.artist,
+            year: res.data.year,
+            duo: res.data.duo,
+            explicit: res.data.explicit,
+            styles: res.data.styles,
+          };
 
           dispatch({
             type: SET_CURRENT_SONG,
-            currentSong: song
+            currentSong: song,
           });
 
           // getVideo(song);
           getLyrics(song);
           getImage(song);
-      })
-      .catch(err => console.log(err));
+        })
+        .catch((err) => console.log(err));
     } else {
       dispatch({
         type: SET_CURRENT_SONG,
-        currentSong: state.currentSong
+        currentSong: state.currentSong,
       });
-      
+
       // getVideo(state.currentSong);
       getLyrics(state.currentSong);
       getImage(state.currentSong);
     }
-
-      
   }
-
 
   return (
     <div>
@@ -108,9 +105,7 @@ function Song(props) {
           <Col>
             <Lyrics lyrics={lyrics} />
           </Col>
-          <Col>
-            {/* <Video video={video} /> */}
-          </Col>
+          <Col>{/* <Video video={video} /> */}</Col>
         </Row>
       </Container>
     </div>

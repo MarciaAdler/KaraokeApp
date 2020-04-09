@@ -3,3 +3,4 @@ export const LOADING = "LOADING";
 export const CLEAR_RESULTS = "CLEAR_RESULTS";
 export const SET_CURRENT_SONG = "SET_CURRENT_SONG";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const SET_SAVED_SONGS = "SET_SAVED_SONGS";

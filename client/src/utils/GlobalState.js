@@ -4,7 +4,8 @@ import {
   SET_SONG_RESULTS,
   CLEAR_RESULTS,
   SET_CURRENT_SONG,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  SET_SAVED_SONGS,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -16,13 +17,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         results: action.results,
-        loading: false
+        loading: false,
       };
     case CLEAR_RESULTS:
       return {
         ...state,
         results: [],
-        loading: false
+        loading: false,
       };
     case SET_CURRENT_SONG:
       return {
@@ -34,14 +35,23 @@ const reducer = (state, action) => {
           year: action.currentSong.year,
           duo: action.currentSong.duo,
           explicit: action.currentSong.explicit,
-          styles: action.currentSong.styles
+          styles: action.currentSong.styles,
         },
-        loading: false
+        loading: false,
       };
     case SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.currentUser
+        currentUser: {
+          id: action.currentUser.id,
+          username: action.currentUser.username,
+        },
+      };
+    case SET_SAVED_SONGS:
+      return {
+        ...state,
+        saved: action.saved,
+        loading: false,
       };
     default:
       return state;
@@ -58,11 +68,14 @@ const StoreProvider = ({ value = [], ...props }) => {
       duo: 0,
       explicit: 0,
       year: 1984,
-      styles: ""
+      styles: "",
     },
-    currentUser: "",
+    currentUser: {
+      id: 0,
+      username: "",
+    },
     saved: [],
-    loading: false
+    loading: false,
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

@@ -11,4 +11,6 @@ router.post(
   usersController.findOne
 );
 
+router.route("/api/saved").post(usersController.saveSong);
+router.route("/api/saved").get(usersController.findAllSaved);
 module.exports = router;

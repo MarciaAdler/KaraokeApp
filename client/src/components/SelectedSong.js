@@ -6,15 +6,37 @@ import {
   Button,
   Col,
   Row,
-  Container
+  Container,
 } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_CURRENT_SONG } from "../utils/actions";
+import { SET_CURRENT_SONG, SET_SAVED_SONGS } from "../utils/actions";
 import API from "../utils/API";
 
 export default function SelectedSong(props) {
   const [state, dispatch] = useStoreContext();
+  function saveSong() {
+    API.saveSong({
+      userId: state.currentUser.id,
+      songId: state.currentSong.id,
+    })
+      .then((results) => {
+        console.log(results.data);
+        updateSaved(state.currentUser.id);
+      })
+      .catch((err) => console.log(err));
+  }
 
+  function updateSaved(userId) {
+    API.getSaved(userId)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: SET_SAVED_SONGS,
+          saved: response.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <Container>
       <Row md={2} key={state.currentSong.id}>
@@ -36,7 +58,7 @@ export default function SelectedSong(props) {
           <br />
           <button
             onClick={() => {
-              state.currentSong.saveSong(props);
+              saveSong();
             }}
           >
             Save

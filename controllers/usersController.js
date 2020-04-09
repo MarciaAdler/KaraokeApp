@@ -1,26 +1,51 @@
 const db = require("../models");
 
 module.exports = {
-  createUser: function(req, res) {
+  createUser: function (req, res) {
     console.log(req.body);
     db.User.create({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
     })
-      .then(function() {
+      .then(function () {
         res.json(req.body);
       })
-      .catch(function(err) {
+      .catch(function (err) {
         res.status(401).json(err);
       });
   },
-  findOne: function(req, res) {
+  findOne: function (req, res) {
     db.User.findOne({
       where: {
-        username: req.body.username
-      }
-    }).then(function(user) {
+        username: req.body.username,
+      },
+    }).then(function (user) {
       res.json(user);
     });
-  }
+  },
+  saveSong: function (req, res) {
+    db.SavedSong.create({
+      userId: req.body.userId,
+      songId: req.body.songId,
+    })
+      .then(function () {
+        res.json(req.body);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  findAllSaved: function (req, res) {
+    console.log("object");
+    console.log(req.user.id);
+    db.SavedSong.findAll({
+      where: {
+        userId: req.user.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

@@ -8,6 +8,7 @@ import SearchResults from "./pages/SearchResults";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Saved from "./pages/Saved";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/signup" component={Signup} />
             <Route path="/searchresults" component={SearchResults} />
             <Route path="/song" component={Song} />
+            <Route path="/saved" component={Saved} />
           </Switch>
         </Router>
       </StoreProvider>

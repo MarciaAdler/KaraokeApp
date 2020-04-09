@@ -8,7 +8,7 @@ export default function Navigation() {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="#features">Saved</Nav.Link>
+          <Nav.Link href="/saved">Saved</Nav.Link>
           <Nav.Link href="#pricing">Profile</Nav.Link>
 
           <Search />

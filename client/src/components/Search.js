@@ -14,17 +14,17 @@ export default function Search() {
     dispatch({ type: LOADING });
     setRedirect(false);
     API.getSongs(songRef)
-      .then(results => {
+      .then((results) => {
         console.log(results);
 
         dispatch({
           type: SET_SONG_RESULTS,
-          results: results.data
+          results: results.data,
         });
         setRedirect(true);
       })
 
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   const renderRedirect = () => {
@@ -32,7 +32,7 @@ export default function Search() {
       return <Redirect to="/searchresults" />;
     }
   };
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(songRef.current.value);
     getSongs(songRef.current.value);
