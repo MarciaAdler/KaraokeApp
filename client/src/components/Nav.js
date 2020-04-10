@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Nav, Navbar, Button } from "react-bootstrap";
 import Search from "../components/Search";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_CURRENT_USER, SET_SAVED_SONGS } from "../utils/actions";
+import { SET_CURRENT_USER, SET_SAVED_SONGS, CLEAR_ALL } from "../utils/actions";
 import API from "../utils/API";
 
 export default function Navigation() {
   const [state, dispatch] = useStoreContext();
+  const [redirect, setRedirect] = useState(false);
   
   useEffect(() => {
     if (state.currentUser.id === 0 && localStorage.getItem('currentUser')) {
@@ -39,20 +40,38 @@ export default function Navigation() {
       .catch((err) => console.log(err));
   }
 
+  function logOut() {
+    dispatch({
+      type: CLEAR_ALL
+    });
+    localStorage.clear();
+    setRedirect(true);
+    renderRedirect();
+  }
+
+  const renderRedirect = () => {
+    if (redirect === true) {
+      return <Redirect to="/login" />;
+    }
+  };
+
 
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand><Link to="/">Navbar</Link></Navbar.Brand>
         <Nav className="mr-auto">
           <Link to="/saved">Saved</Link>
 
           <Search />
 
+          
           <Link to="/login">Login</Link>
           <Link to="/signup">Signup</Link>
+          <Button onClick={logOut}>Logout</Button>
         </Nav>
       </Navbar>
+      {renderRedirect()}
     </div>
   );
 }

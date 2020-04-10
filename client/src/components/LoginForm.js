@@ -15,15 +15,15 @@ export default function LoginForm() {
       return <Redirect to="/" />;
     }
   };
-  
+
   function setSaved(userId) {
-    console.log("setSaved in LoginForm: ", userId);
     API.getSaved(userId)
       .then((response) => {
         dispatch({
           type: SET_SAVED_SONGS,
           saved: response.data,
         });
+        window.localStorage.setItem("savedSongs", JSON.stringify(response.data));
       })
       .catch((err) => console.log(err));
   }

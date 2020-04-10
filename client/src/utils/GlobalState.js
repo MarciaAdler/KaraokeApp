@@ -2,7 +2,7 @@ import React, { createContext, useReducer, useContext } from "react";
 
 import {
   SET_SONG_RESULTS,
-  CLEAR_RESULTS,
+  CLEAR_ALL,
   SET_CURRENT_SONG,
   SET_CURRENT_USER,
   SET_SAVED_SONGS,
@@ -19,10 +19,23 @@ const reducer = (state, action) => {
         results: action.results,
         loading: false,
       };
-    case CLEAR_RESULTS:
+    case CLEAR_ALL:
       return {
-        ...state,
         results: [],
+        currentSong: {
+          id: 0,
+          title: "",
+          artist: "",
+          duo: 0,
+          explicit: 0,
+          year: 1984,
+          styles: "",
+        },
+        currentUser: {
+          id: 0,
+          username: "",
+        },
+        saved: [],
         loading: false,
       };
     case SET_CURRENT_SONG:
