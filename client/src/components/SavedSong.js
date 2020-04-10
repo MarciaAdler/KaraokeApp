@@ -7,6 +7,7 @@ export default function SavedSong({ songDetail }) {
       {songDetail.length
         ? songDetail.map((song) => (
             <div key={song.id}>
+              <img src={song.image} alt={song.title} />
               Title: {song.title}
               <br />
               Artist: {song.artist}

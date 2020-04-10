@@ -25,6 +25,18 @@ export default function Saved(props) {
     // by the song id
     const { data } = await API.findSaved(saved.songId);
 
+    const image = await API.getImage(data);
+
+    data["image"] = image.data;
+
+    // console.log(data);
+    // API.getImage(data)
+    // .then(response => {
+    //   console.log("image response: ", response)
+    //   data["image"] = response.data;
+    // });
+
+    console.log(data);
     // Since function is being used in a forEach loop,
     // update the array with the existing values 
     // along with the new data that was retrieved 
