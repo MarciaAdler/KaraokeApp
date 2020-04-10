@@ -47,7 +47,6 @@ module.exports = {
       });
   },
   findSavedById: function (req, res) {
-    console.log(req);
     db.Song.findOne({
       where: {
         id: req.params.id,

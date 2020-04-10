@@ -15,7 +15,9 @@ export default function LoginForm() {
       return <Redirect to="/" />;
     }
   };
+  
   function setSaved(userId) {
+    console.log("setSaved in LoginForm: ", userId);
     API.getSaved(userId)
       .then((response) => {
         dispatch({
@@ -25,6 +27,7 @@ export default function LoginForm() {
       })
       .catch((err) => console.log(err));
   }
+
   function login(event) {
     event.preventDefault();
     API.getUser({
@@ -40,7 +43,13 @@ export default function LoginForm() {
           },
         });
 
+        let localStorageUser = {
+          id: results.data.id,
+          username: results.data.username,
+        }
+
         setLoggedIn(true);
+        window.localStorage.setItem("currentUser", JSON.stringify(localStorageUser));
         setSaved(results.data.id);
       })
       .catch((err) => console.log(err));

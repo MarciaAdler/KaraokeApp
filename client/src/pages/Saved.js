@@ -5,19 +5,37 @@ import { LOADING, CLEAR_RESULTS, SET_CURRENT_SONG } from "../utils/actions";
 import ResultSong from "../components/ResultSong";
 import { Redirect } from "react-router-dom";
 import SavedSong from "../components/SavedSong";
+import { SET_CURRENT_USER, SET_SAVED_SONGS } from "../utils/actions";
 import API from "../utils/API";
 export default function Saved(props) {
   const [state, dispatch] = useStoreContext();
   const [songDetail, setSongDetail] = useState([]);
 
   useEffect(() => {
-    // When the page loads, go through each of the saved song ids
-    // in the global state
-    state.saved.forEach(song => {
-      getSongs(song);
-    });
+    
+    // If the user refreshes the page, grab the saved song id's and currentUser id
+    // from Local Storage to populate the saved page
+    if (state.currentUser.id === 0 && localStorage.getItem('savedSongs')) {
+      
+      const savedSongsLs = JSON.parse(localStorage.getItem('savedSongs'));
+
+      // Loop through the saved song ids from the local storage
+      // to retrieve the track details
+      savedSongsLs.forEach(song => {
+        getSongs(song);
+      })
+      
+    } else {
+        // When the page loads, go through each of the saved song ids
+        // in the global state
+        state.saved.forEach(song => {
+          getSongs(song);
+        });
+    }
 
   }, []);
+
+
 
   async function getSongs(saved) {
 
@@ -25,16 +43,20 @@ export default function Saved(props) {
     // by the song id
     const { data } = await API.findSaved(saved.songId);
 
+    // Make API call to get image src from Genius
     const image = await API.getImage(data);
 
+    // Adding image src to the track details object
     data["image"] = image.data;
 
-    console.log(data);
     // Since function is being used in a forEach loop,
-    // update the array with the existing values 
+    // update the songDetail state array with the existing values 
     // along with the new data that was retrieved 
     setSongDetail(oldSongDetail => [...oldSongDetail, data]);
+    
   }
+
+
 
   return (
     <div>

@@ -34,6 +34,7 @@ export default function SelectedSong(props) {
           type: SET_SAVED_SONGS,
           saved: response.data,
         });
+        window.localStorage.setItem("savedSongs", JSON.stringify(response.data));
       })
       .catch((err) => console.log(err));
   }
