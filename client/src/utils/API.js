@@ -38,4 +38,7 @@ export default {
   getSaved: function (req) {
     return axios.get("/api/saved", req);
   },
+  findSaved: function (req) {
+    return axios.get("/api/savedsongs/" + req);
+  },
 };

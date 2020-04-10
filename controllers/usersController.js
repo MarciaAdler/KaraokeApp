@@ -36,11 +36,21 @@ module.exports = {
       });
   },
   findAllSaved: function (req, res) {
-    console.log("object");
-    console.log(req.user.id);
     db.SavedSong.findAll({
       where: {
         userId: req.user.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
+  findSavedById: function (req, res) {
+    console.log(req);
+    db.Song.findOne({
+      where: {
+        id: req.params.id,
       },
     })
       .then((dbModel) => res.json(dbModel))
