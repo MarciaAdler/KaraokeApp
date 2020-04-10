@@ -11,7 +11,8 @@ export default function Saved(props) {
   const [songDetail, setSongDetail] = useState([]);
 
   useEffect(() => {
-    // getSongs(state.saved);
+    // When the page loads, go through each of the saved song ids
+    // in the global state
     state.saved.forEach(song => {
       getSongs(song);
     });
@@ -20,9 +21,13 @@ export default function Saved(props) {
 
   async function getSongs(saved) {
 
+    // Make API call to find the track details in the db 
+    // by the song id
     const { data } = await API.findSaved(saved.songId);
 
-    console.log(data);
+    // Since function is being used in a forEach loop,
+    // update the array with the existing values 
+    // along with the new data that was retrieved 
     setSongDetail(oldSongDetail => [...oldSongDetail, data]);
   }
 
