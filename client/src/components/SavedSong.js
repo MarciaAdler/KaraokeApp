@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 export default function SavedSong({ songDetail }) {
-  console.log(songDetail);
+  // console.log(songDetail);
   return (
     <div>
       {songDetail.length

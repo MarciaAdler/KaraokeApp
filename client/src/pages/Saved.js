@@ -11,33 +11,21 @@ export default function Saved(props) {
   const [songDetail, setSongDetail] = useState([]);
 
   useEffect(() => {
-    getSongs(state.saved);
-  }, []);
-  async function getSongs(saved) {
-    const songs = await saved.map((song) => {
-      API.findSaved(song.songId).then((res) => {
-        console.log(res.data);
-        return res.data;
-      });
+    // getSongs(state.saved);
+    state.saved.forEach(song => {
+      getSongs(song);
     });
-    // saved.forEach((song) => {
-    //   API.findSaved(song.songId).then((res) => {
-    //     console.log(res.data);
-    //     songs.push(res.data);
-    //   });
-    // });
-    console.log(songs);
-    setSongDetail(songs);
+
+  }, []);
+
+  async function getSongs(saved) {
+
+    const { data } = await API.findSaved(saved.songId);
+
+    console.log(data);
+    setSongDetail(oldSongDetail => [...oldSongDetail, data]);
   }
-  //   const renderSavedSongs = () => {
-  //     if (songDetail.length > 0) {
-  //       return (
-  //         // <Redirect push to={`/song/${state.currentSong.title}-${state.currentSong.artist}`}
-  //         // />
-  //         <SavedSong songDetail={songDetail} />
-  //       );
-  //     }
-  //   };
+
   return (
     <div>
       <SavedSong songDetail={songDetail} />

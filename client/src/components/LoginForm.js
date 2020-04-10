@@ -18,7 +18,6 @@ export default function LoginForm() {
   function setSaved(userId) {
     API.getSaved(userId)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: SET_SAVED_SONGS,
           saved: response.data,
@@ -28,13 +27,11 @@ export default function LoginForm() {
   }
   function login(event) {
     event.preventDefault();
-    console.log(nameRef.current.value);
     API.getUser({
       username: nameRef.current.value,
       password: passwordRef.current.value,
     })
       .then((results) => {
-        console.log(results.data);
         dispatch({
           type: SET_CURRENT_USER,
           currentUser: {
