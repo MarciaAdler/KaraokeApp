@@ -29,7 +29,15 @@ export default function Search() {
 
   const renderRedirect = () => {
     if (state.results && redirect) {
-      return <Redirect to="/searchresults" />;
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: "/searchresults",
+            search: `?q=${songRef.current.value}`,
+          }}
+        />
+      );
     }
   };
   const handleSubmit = (e) => {
