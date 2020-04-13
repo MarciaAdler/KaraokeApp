@@ -17,7 +17,7 @@ export default {
 
   getLyrics: function (currentSong) {
     return axios.get(
-      "/api/lyrics/" + currentSong.title + "-" + currentSong.artist
+      "/api/lyrics/" + currentSong.title + " " + currentSong.artist
     );
   },
 

@@ -13,6 +13,7 @@ function Song(props) {
   const [video, setVideo] = useState("");
   const [lyrics, setLyrics] = useState([]);
   const [artwork, setArtwork] = useState("");
+  const [path, setPath] = useState("");
 
   useEffect(() => {
     // console.log(window.location.search);
@@ -33,7 +34,10 @@ function Song(props) {
     API.getLyrics(currentSong)
       .then((res) => {
         // console.log(res.data);
-        const lines = res.data.split("\n");
+        const lines = res.data
+          .replace("******* This Lyrics is NOT for Commercial use *******", "")
+          .split("\n");
+        lines.splice(lines.length - 1);
         setLyrics(lines);
       })
       .catch((err) => console.log(err));
@@ -42,7 +46,9 @@ function Song(props) {
   function getImage(currentSong) {
     API.getImage(currentSong)
       .then((res) => {
-        setArtwork(res.data);
+        setArtwork(res.data.song_art_image_thumbnail_url);
+
+        setPath(res.data.path);
       })
       .catch((err) => console.log(err));
   }
@@ -103,7 +109,7 @@ function Song(props) {
         />
         <Row>
           <Col>
-            <Lyrics lyrics={lyrics} />
+            <Lyrics lyrics={lyrics} path={path} />
           </Col>
           <Col>{/* <Video video={video} /> */}</Col>
         </Row>
