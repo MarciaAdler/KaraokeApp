@@ -31,11 +31,10 @@ export default function ResultSong(props) {
 
     console.log(state.currentSong);
   }
+  // capturing selected song title and artist in url
   const renderRedirect = () => {
     if (state.currentSong && redirect) {
       return (
-        // <Redirect push to={`/song/${state.currentSong.title}-${state.currentSong.artist}`}
-        // />
         <Redirect
           push
           to={{
@@ -46,6 +45,10 @@ export default function ResultSong(props) {
       );
     }
   };
+
+  // Reset results global state on page refresh.
+  // takes search query from url and checks to see if there is a value to reset state for.  if there is
+  // search database and return results and set results global state.
   function setResults(url) {
     console.log(url);
     if (state.results.length === 0 && window.location.search) {

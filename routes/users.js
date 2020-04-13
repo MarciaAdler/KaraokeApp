@@ -14,4 +14,5 @@ router.post(
 router.route("/api/saved").post(usersController.saveSong);
 router.route("/api/saved").get(usersController.findAllSaved);
 router.route("/api/savedsongs/:id").get(usersController.findSavedById);
+router.route("/api/savedsongs/:id").delete(usersController.deleteById);
 module.exports = router;

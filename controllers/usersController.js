@@ -57,4 +57,15 @@ module.exports = {
         res.status(401).json(err);
       });
   },
+  deleteById: function (req, res) {
+    db.SavedSong.destroy({
+      where: {
+        songId: req.params.id,
+      },
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  },
 };

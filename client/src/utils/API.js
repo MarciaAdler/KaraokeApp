@@ -1,7 +1,6 @@
 const axios = require("axios");
 export default {
   getSongs: function (req, res) {
-    console.log(req);
     const input = req;
     return axios.get("/api/searchresults/" + input);
   },
@@ -40,5 +39,8 @@ export default {
   },
   findSaved: function (req) {
     return axios.get("/api/savedsongs/" + req);
+  },
+  deleteSavedSong: function (currentSong) {
+    return axios.delete("/api/savedsongs/" + currentSong);
   },
 };
