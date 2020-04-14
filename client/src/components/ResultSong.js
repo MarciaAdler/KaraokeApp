@@ -9,9 +9,12 @@ export default function ResultSong(props) {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
 
+  console.log("results state in ResultSong.js", state.results);
+
   useEffect(() => {
     setResults(window.location.search);
   }, []);
+
   function selectSong(result) {
     const song = {
       id: result.id,
@@ -54,14 +57,18 @@ export default function ResultSong(props) {
     if (state.results.length === 0 && window.location.search) {
       API.getSongs(url.replace("?q=", ""))
         .then((response) => {
+          let resultsArr = response.data;
+
           dispatch({
             type: SET_SONG_RESULTS,
-            results: response.data,
+            results: resultsArr,
           });
-          console.log(response);
+          
+  
         })
         .catch((err) => console.log(err));
     }
+
   }
 
   return (
@@ -69,6 +76,9 @@ export default function ResultSong(props) {
       {state.results.length
         ? state.results.map((result) => (
             <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
+              <img src={result.image} alt={result.title} /> <br/>
+
+              Image: {result.image}<br/>
               Title: {result.title}
               <br />
               Artist: {result.artist}

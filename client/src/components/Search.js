@@ -10,20 +10,31 @@ export default function Search() {
   const songRef = useRef();
   const [state, dispatch] = useStoreContext();
   function getSongs(songRef) {
+    let resultsArr = []
     console.log(songRef);
     dispatch({ type: LOADING });
     setRedirect(false);
     API.getSongs(songRef)
       .then((results) => {
-        console.log(results);
 
+        resultsArr = results.data;
+        resultsArr.map((result) => {
+            API.getImage(result).then(image => {
+              result["image"] = image.data.song_art_image_thumbnail_url;
+
+            });
+            return result;
+          });
+
+      })
+      .then(() => {
+        console.log("resultsArr before dispatch", resultsArr);
         dispatch({
           type: SET_SONG_RESULTS,
-          results: results.data,
+          results: resultsArr,
         });
         setRedirect(true);
       })
-
       .catch((err) => console.log(err));
   }
 

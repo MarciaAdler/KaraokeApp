@@ -22,7 +22,7 @@ export default {
 
   getImage: function (currentSong) {
     return axios.get(
-      "/api/image/" + currentSong.title + "-" + currentSong.artist
+      "/api/image/" + currentSong.title.replace(/\//g, "") + "-" + currentSong.artist.replace(/\//g, "")
     );
   },
   createUser: function (req) {
