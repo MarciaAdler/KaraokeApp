@@ -16,13 +16,12 @@ export default function Search() {
     setRedirect(false);
     API.getSongs(songRef)
       .then((results) => {
-
         resultsArr = results.data;
         resultsArr.map((result) => {
             API.getImage(result).then(image => {
               result["image"] = image.data.song_art_image_thumbnail_url;
-
-            });
+            })
+            .catch((err) => console.log(err));
             return result;
           });
 
