@@ -17,13 +17,11 @@ router.get("/api/lyrics/:id", (req, res) => {
       process.env.MUSIC_KEY;
     axios.get(queryURL2).then((lyrics) => {
       res.send(lyrics.data.message.body.lyrics.lyrics_body);
-      console.log(lyrics.data.message.body.lyrics);
     });
   });
 });
 
 router.get("/api/song/:title", (req, res) => {
-  // const query = req.params.title;
   const queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${req.params.title}-karaoke&type=video&key=${process.env.YOUTUBE_KEY}&videoEmbeddable=true`;
   axios.get(queryURL).then((response) => {
     res.send(response.data);

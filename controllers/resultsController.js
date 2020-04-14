@@ -3,7 +3,6 @@ const db = require("../models");
 const Op = Sequelize.Op;
 module.exports = {
   findAll: function (req, res) {
-    // console.log(req.params);
     db.Song.findAll({
       where: {
         title: {

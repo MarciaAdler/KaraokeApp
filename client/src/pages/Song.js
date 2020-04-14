@@ -16,7 +16,6 @@ function Song(props) {
   const [path, setPath] = useState("");
 
   useEffect(() => {
-    // console.log(window.location.search);
     loadSong(window.location.search);
   }, []);
 
@@ -33,7 +32,6 @@ function Song(props) {
   function getLyrics(currentSong) {
     API.getLyrics(currentSong)
       .then((res) => {
-        // console.log(res.data);
         const lines = res.data
           .replace("******* This Lyrics is NOT for Commercial use *******", "")
           .split("\n");
@@ -75,7 +73,7 @@ function Song(props) {
             currentSong: song,
           });
 
-          // getVideo(song);
+          getVideo(song);
           getLyrics(song);
           getImage(song);
         })
@@ -86,7 +84,7 @@ function Song(props) {
         currentSong: state.currentSong,
       });
 
-      // getVideo(state.currentSong);
+      getVideo(state.currentSong);
       getLyrics(state.currentSong);
       getImage(state.currentSong);
     }
@@ -95,23 +93,27 @@ function Song(props) {
   return (
     <div>
       <Container fluid>
-        <SelectedSong
-          artwork={artwork}
-          selectSong={state.currentSong.selectSong}
-          key={state.currentSong.id}
-          id={state.currentSong.id}
-          title={state.currentSong.title}
-          artist={state.currentSong.artist}
-          year={state.currentSong.year}
-          duo={state.currentSong.duo}
-          explicit={state.currentSong.explicit}
-          styles={state.currentSong.styles}
-        />
-        <Row>
-          <Col>
+        <Row className="justify-content-center py-3 video--container">
+          <Col className="col-12">
+            <Video video={video} />
+            </Col>
+        </Row>
+        <Row className="py-5">
+            <SelectedSong
+              artwork={artwork}
+              selectSong={state.currentSong.selectSong}
+              key={state.currentSong.id}
+              id={state.currentSong.id}
+              title={state.currentSong.title}
+              artist={state.currentSong.artist}
+              year={state.currentSong.year}
+              duo={state.currentSong.duo}
+              explicit={state.currentSong.explicit}
+              styles={state.currentSong.styles}
+            />
+            <Col lg={4}>
             <Lyrics lyrics={lyrics} path={path} />
           </Col>
-          <Col>{/* <Video video={video} /> */}</Col>
         </Row>
       </Container>
     </div>

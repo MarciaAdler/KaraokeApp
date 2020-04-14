@@ -7,6 +7,7 @@ import {
   Col,
   Row,
   Container,
+  Media
 } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_SONG, SET_SAVED_SONGS } from "../utils/actions";
@@ -39,33 +40,41 @@ export default function SelectedSong(props) {
       .catch((err) => console.log(err));
   }
   return (
-    <Container>
-      <Row md={2} key={state.currentSong.id}>
-        <Col md={6}>
-          <img src={props.artwork} alt={state.currentSong.title} />
+  
+
+        <Col md={6} key={state.currentSong.id}>
+          <Media>
+            <img
+              width={200}
+              height={200}
+              className="mr-5"
+              src={props.artwork} 
+              alt={state.currentSong.title}
+            />
+            <Media.Body>
+                  Title: {state.currentSong.title}
+                <br />
+                Artist: {state.currentSong.artist}
+                <br />
+                Year: {state.currentSong.year}
+                <br />
+                Explicit: {state.currentSong.explicit === 0 ? "false" : "true"}
+                <br />
+                Duo: {state.currentSong.duo === 0 ? "false" : "true"}
+                <br />
+                Styles: {state.currentSong.styles}
+                <br />
+                <button
+                  onClick={() => {
+                    saveSong();
+                  }}
+                >
+                  Save
+                </button>
+            </Media.Body>
+          </Media>
+        
+          
         </Col>
-        <Col md={6} className="mt-5">
-          Title: {state.currentSong.title}
-          <br />
-          Artist: {state.currentSong.artist}
-          <br />
-          Year: {state.currentSong.year}
-          <br />
-          Explicit: {state.currentSong.explicit === 0 ? "false" : "true"}
-          <br />
-          Duo: {state.currentSong.duo === 0 ? "false" : "true"}
-          <br />
-          Styles: {state.currentSong.styles}
-          <br />
-          <button
-            onClick={() => {
-              saveSong();
-            }}
-          >
-            Save
-          </button>
-        </Col>
-      </Row>
-    </Container>
   );
 }
