@@ -45,9 +45,11 @@ export default function Search() {
     console.log(songRef.current.value);
     getSongs(songRef.current.value);
   };
+
+
   return (
     <div className="w-100">
-      <Form inline className="w-100">
+      <Form inline className="w-100" onSubmit={handleSubmit}>
         <InputGroup className="w-100">
           <FormControl
             placeholder="Search for a Song"
