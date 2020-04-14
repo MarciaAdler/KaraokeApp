@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_SONG, SET_SONG_RESULTS } from "../utils/actions";
 import { Redirect } from "react-router-dom";
@@ -65,10 +65,10 @@ export default function ResultSong(props) {
   }
 
   return (
-    <div>
+    <Row>
       {state.results.length
         ? state.results.map((result) => (
-            <div key={result.id}>
+            <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
               Title: {result.title}
               <br />
               Artist: {result.artist}
@@ -88,10 +88,10 @@ export default function ResultSong(props) {
               >
                 Select
               </button>
-            </div>
+            </Col>
           ))
         : "no songs"}
       {renderRedirect()}
-    </div>
+    </Row>
   );
 }
