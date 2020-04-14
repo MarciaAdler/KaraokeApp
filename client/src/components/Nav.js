@@ -65,12 +65,25 @@ export default function Navigation() {
         <Nav className="justify-content-center col">
           <Search />
         </Nav>
-        <Nav className="justify-content-end col-4 pr-0">
-          <Link to="/saved">Saved</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
-          <Button onClick={logOut}>Logout</Button>
-        </Nav>
+        
+
+          { state.currentUser.id === 0 ?
+            <Nav className="justify-content-end col-4 pr-0">
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
+            </Nav>
+            :
+            <Nav className="justify-content-end col-4 pr-0">
+              <Link to="/saved">Saved</Link>
+              <Button onClick={logOut}>Logout</Button>
+            </Nav>
+          }
+          
+
+          
+
+
+        
       </Navbar>
       {renderRedirect()}
     </div>
