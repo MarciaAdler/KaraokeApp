@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Nav";
 import Home from "./pages/Home";
 import { StoreProvider } from "../src/utils/GlobalState";
@@ -9,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Saved from "./pages/Saved";
+import "./App.sass";
 
 function App() {
   return (

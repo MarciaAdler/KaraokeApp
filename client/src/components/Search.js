@@ -46,9 +46,9 @@ export default function Search() {
     getSongs(songRef.current.value);
   };
   return (
-    <div>
-      <Form inline>
-        <InputGroup className="mb-3">
+    <div className="w-100">
+      <Form inline className="w-100">
+        <InputGroup className="w-100">
           <FormControl
             placeholder="Search for a Song"
             aria-label="Song"

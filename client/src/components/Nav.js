@@ -58,14 +58,15 @@ export default function Navigation() {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand><Link to="/">Navbar</Link></Navbar.Brand>
-        <Nav className="mr-auto">
-          <Link to="/saved">Saved</Link>
-
+      <Navbar className="navbar--container">
+        <Navbar.Brand className="col-4 pl-0">
+          <Link to="/">SingAlong Karaoke</Link>
+        </Navbar.Brand>
+        <Nav className="justify-content-center col">
           <Search />
-
-          
+        </Nav>
+        <Nav className="justify-content-end col-4 pr-0">
+          <Link to="/saved">Saved</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Signup</Link>
           <Button onClick={logOut}>Logout</Button>
