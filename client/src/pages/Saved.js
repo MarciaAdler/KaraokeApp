@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 import SavedSong from "../components/SavedSong";
 import { SET_CURRENT_USER, SET_SAVED_SONGS } from "../utils/actions";
 import API from "../utils/API";
+import Navigation from "../components/Nav";
 export default function Saved(props) {
   const [state, dispatch] = useStoreContext();
   const [songDetail, setSongDetail] = useState([]);
@@ -76,6 +77,7 @@ export default function Saved(props) {
   }
   return (
     <div>
+      <Navigation />
       <SavedSong songDetail={songDetail} deleteSong={deleteSong} />
     </div>
   );

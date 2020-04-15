@@ -33,6 +33,7 @@
     "genius-api": "^0.4.1",
     "if-env": "^1.0.4",
     "mysql2": "^2.1.0",
+    "node-sass": "^4.13.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "puppeteer": "^2.1.1",

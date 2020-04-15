@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { LOADING, SET_CURRENT_SONG } from "../utils/actions";
 import API from "../utils/API";
-import Navigation from "../components/Nav";
 import { Container, Row, Col } from "react-bootstrap";
 import SelectedSong from "../components/SelectedSong";
 import Video from "../components/Video";
 import Lyrics from "../components/Lyrics";
-
+import Navigation from "../components/Nav";
 function Song(props) {
   const [state, dispatch] = useStoreContext();
   const [video, setVideo] = useState("");
@@ -92,26 +91,27 @@ function Song(props) {
 
   return (
     <div>
+      <Navigation />
       <Container fluid>
         <Row className="justify-content-center py-3 video--container">
           <Col className="col-12">
             <Video video={video} />
-            </Col>
+          </Col>
         </Row>
         <Row className="py-5">
-            <SelectedSong
-              artwork={artwork}
-              selectSong={state.currentSong.selectSong}
-              key={state.currentSong.id}
-              id={state.currentSong.id}
-              title={state.currentSong.title}
-              artist={state.currentSong.artist}
-              year={state.currentSong.year}
-              duo={state.currentSong.duo}
-              explicit={state.currentSong.explicit}
-              styles={state.currentSong.styles}
-            />
-            <Col lg={4}>
+          <SelectedSong
+            artwork={artwork}
+            selectSong={state.currentSong.selectSong}
+            key={state.currentSong.id}
+            id={state.currentSong.id}
+            title={state.currentSong.title}
+            artist={state.currentSong.artist}
+            year={state.currentSong.year}
+            duo={state.currentSong.duo}
+            explicit={state.currentSong.explicit}
+            styles={state.currentSong.styles}
+          />
+          <Col lg={4}>
             <Lyrics lyrics={lyrics} path={path} />
           </Col>
         </Row>

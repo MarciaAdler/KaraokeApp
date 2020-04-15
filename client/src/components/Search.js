@@ -5,36 +5,36 @@ import { useStoreContext } from "../utils/GlobalState";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 
-export default function Search() {
+export default function Search(props) {
   const [redirect, setRedirect] = useState(false);
   const songRef = useRef();
   const [state, dispatch] = useStoreContext();
-  function getSongs(songRef) {
-    let resultsArr = []
+  async function getSongs(songRef) {
     console.log(songRef);
     dispatch({ type: LOADING });
-    setRedirect(false);
-    API.getSongs(songRef)
-      .then((results) => {
-        resultsArr = results.data;
-        resultsArr.map((result) => {
-            API.getImage(result).then(image => {
-              result["image"] = image.data.song_art_image_thumbnail_url;
-            })
-            .catch((err) => console.log(err));
-            return result;
-          });
 
-      })
-      .then(() => {
-        console.log("resultsArr before dispatch", resultsArr);
-        dispatch({
-          type: SET_SONG_RESULTS,
-          results: resultsArr,
-        });
-        setRedirect(true);
-      })
-      .catch((err) => console.log(err));
+    setRedirect(false);
+    const { data } = await API.getSongs(songRef);
+
+    for (let i = 0; i < data.length; i++) {
+      if (i <= data.length) {
+        const result = data[i];
+        console.log(result);
+        const image = await API.getImage(result);
+        result["image"] = image.data.song_art_image_thumbnail_url;
+
+        console.log("data[i]", data[i]);
+        console.log(result);
+      }
+
+      setRedirect(true);
+    }
+    dispatch({
+      type: SET_SONG_RESULTS,
+      results: data,
+    });
+
+    console.log("results after dispatch", data);
   }
 
   const renderRedirect = () => {
@@ -53,9 +53,13 @@ export default function Search() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(songRef.current.value);
+    dispatch({
+      type: SET_SONG_RESULTS,
+      results: [],
+    });
     getSongs(songRef.current.value);
+    console.log("state", state.results);
   };
-
 
   return (
     <div className="w-100">

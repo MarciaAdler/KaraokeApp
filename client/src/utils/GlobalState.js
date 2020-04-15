@@ -6,6 +6,7 @@ import {
   SET_CURRENT_SONG,
   SET_CURRENT_USER,
   SET_SAVED_SONGS,
+  LOADING,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -65,6 +66,11 @@ const reducer = (state, action) => {
         ...state,
         saved: action.saved,
         loading: false,
+      };
+    case LOADING:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;

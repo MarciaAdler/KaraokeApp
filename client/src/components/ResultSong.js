@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-import { SET_CURRENT_SONG, SET_SONG_RESULTS } from "../utils/actions";
+import { SET_CURRENT_SONG, SET_SONG_RESULTS, LOADING } from "../utils/actions";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 
@@ -12,7 +12,7 @@ export default function ResultSong(props) {
   console.log("results state in ResultSong.js", state.results);
 
   useEffect(() => {
-    setResults(window.location.search);
+    getResultStateFromUrl(window.location.search);
   }, []);
 
   function selectSong(result) {
@@ -52,33 +52,78 @@ export default function ResultSong(props) {
   // Reset results global state on page refresh.
   // takes search query from url and checks to see if there is a value to reset state for.  if there is
   // search database and return results and set results global state.
-  function setResults(url) {
-    console.log(url);
-    if (state.results.length === 0 && window.location.search) {
-      API.getSongs(url.replace("?q=", ""))
-        .then((response) => {
-          let resultsArr = response.data;
+  // function getResultStateFromUrl(url) {
+  //   let resultsArr = [];
+  //   console.log(url);
+  //   dispatch({ type: LOADING });
+  //   if (state.results.length === 0 && window.location.search) {
+  //     API.getSongs(url.replace("?q=", ""))
+  //       .then((response) => {
+  //         resultsArr = response.data;
+  //         resultsArr.map((result) => {
+  //           API.getImage(result)
+  //             .then((image) => {
+  //               result["image"] = image.data.song_art_image_thumbnail_url;
+  //             })
+  //             .catch((err) => console.log(err));
+  //           console.log(result);
+  //           return result;
+  //         });
+  //       })
+  //       .then(() => {
+  //         dispatch({
+  //           type: SET_SONG_RESULTS,
+  //           results: resultsArr,
+  //         });
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // }
+  async function getResultStateFromUrl(url) {
+    if (state.results.length && window.location.search) {
+      const { data } = await API.getSongs(url.replace("?q=", ""));
+      for (let i = 0; i < data.length; i++) {
+        if (i <= data.length) {
+          const result = data[i];
+          console.log(result);
+          const image = await API.getImage(result);
+          result["image"] = image.data.song_art_image_thumbnail_url;
 
-          dispatch({
-            type: SET_SONG_RESULTS,
-            results: resultsArr,
-          });
-          
-  
-        })
-        .catch((err) => console.log(err));
+          console.log("data[i]", data[i]);
+          console.log(result);
+        }
+      }
+      dispatch({
+        type: SET_SONG_RESULTS,
+        results: data,
+      });
+    } else {
+      const { data } = await API.getSongs(url.replace("?q=", ""));
+      for (let i = 0; i < data.length; i++) {
+        if (i <= data.length) {
+          const result = data[i];
+          console.log(result);
+          const image = await API.getImage(result);
+          result["image"] = image.data.song_art_image_thumbnail_url;
+
+          console.log("data[i]", data[i]);
+          console.log(result);
+        }
+      }
+      dispatch({
+        type: SET_SONG_RESULTS,
+        results: data,
+      });
     }
-
   }
-
   return (
     <Row>
       {state.results.length
-        ? state.results.map((result) => (
+        ? state.results.map((result, index) => (
             <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
-              <img src={result.image} alt={result.title} /> <br/>
-
-              Image: {result.image}<br/>
+              {console.log(Object.keys(result))}
+              <img src={result.image} alt={result.title}></img>
+              <br />
               Title: {result.title}
               <br />
               Artist: {result.artist}

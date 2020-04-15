@@ -5,11 +5,12 @@ module.exports = {
   findAll: function (req, res) {
     db.Song.findAll({
       where: {
-        title: {
-          [Op.like]: "%" + req.params.title + "%",
-        },
+        title: req.params.title,
+        // title: {
+        //   [Op.like]: "%" + req.params.title + "%",
+        // },
       },
-      order: [["title", "ASC"]]
+      // order: [["title", "ASC"]],
     })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

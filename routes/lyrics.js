@@ -23,9 +23,11 @@ var genius = new api(process.env.GENIUS_CLIENT_ACCESS_TOKEN);
 //     .catch(function(error) {});
 // });
 router.get("/api/image/:title", (req, res) => {
-
-  genius.search(req.params.title).then((response) => {
-    res.send(response.hits[0].result);
-  });
+  genius
+    .search(req.params.title)
+    .then((response) => {
+      res.send(response.hits[0].result);
+    })
+    .catch((err) => console.log(err));
 });
 module.exports = router;
