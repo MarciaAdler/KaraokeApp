@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 import SavedSong from "../components/SavedSong";
 import { SET_CURRENT_USER, SET_SAVED_SONGS } from "../utils/actions";
 import API from "../utils/API";
-import Navigation from "../components/Nav";
+
 export default function Saved(props) {
   const [state, dispatch] = useStoreContext();
   const [songDetail, setSongDetail] = useState([]);
@@ -49,24 +49,26 @@ export default function Saved(props) {
     setSongDetail((oldSongDetail) => [...oldSongDetail, data]);
   }
   function updateSaved(userId) {
-    console.log(userId);
-    API.getSaved(userId)
-      .then((response) => {
-        console.log(response.data);
-        dispatch({
-          type: SET_SAVED_SONGS,
-          saved: response.data,
-        });
+    if (state.currentUser.id !== 0) {
+      console.log(userId);
+      API.getSaved(userId)
+        .then((response) => {
+          console.log(response.data);
+          dispatch({
+            type: SET_SAVED_SONGS,
+            saved: response.data,
+          });
 
-        window.localStorage.setItem(
-          "savedSongs",
-          JSON.stringify(response.data)
-        );
-        response.data.forEach((song) => {
-          getSongs(song);
-        });
-      })
-      .catch((err) => console.log(err));
+          window.localStorage.setItem(
+            "savedSongs",
+            JSON.stringify(response.data)
+          );
+          response.data.forEach((song) => {
+            getSongs(song);
+          });
+        })
+        .catch((err) => console.log(err));
+    }
   }
   function deleteSong(song) {
     console.log(song);
@@ -77,7 +79,6 @@ export default function Saved(props) {
   }
   return (
     <div>
-      <Navigation />
       <SavedSong songDetail={songDetail} deleteSong={deleteSong} />
     </div>
   );

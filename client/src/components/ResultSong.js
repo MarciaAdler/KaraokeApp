@@ -97,7 +97,12 @@ export default function ResultSong(props) {
         state.results.map((result, index) => (
           <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
             {console.log(Object.keys(result))}
-            <img src={result.image} alt={result.title}></img>
+            <img
+              src={
+                result.image ? result.image : "https://via.placeholder.com/150"
+              }
+              alt={result.title}
+            ></img>
             <br />
             Title: {result.title}
             <br />

@@ -9,22 +9,21 @@ import API from "../utils/API";
 export default function Navigation() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
-  
-  useEffect(() => {
-    if (state.currentUser.id === 0 && localStorage.getItem('currentUser')) {
 
-      const currentUserLs = JSON.parse(localStorage.getItem('currentUser'));
+  useEffect(() => {
+    if (state.currentUser.id === 0 && localStorage.getItem("currentUser")) {
+      const currentUserLs = JSON.parse(localStorage.getItem("currentUser"));
 
       dispatch({
         type: SET_CURRENT_USER,
-        currentUser: currentUserLs
+        currentUser: currentUserLs,
       });
 
-      
       console.log(currentUserLs.id);
 
       setSaved(currentUserLs.id);
-
+    } else if (state.currentUser.id !== 0) {
+      setSaved(state.currentUser.id);
     }
   }, []);
 
@@ -42,7 +41,7 @@ export default function Navigation() {
 
   function logOut() {
     dispatch({
-      type: CLEAR_ALL
+      type: CLEAR_ALL,
     });
     localStorage.clear();
     setRedirect(true);
@@ -55,7 +54,6 @@ export default function Navigation() {
     }
   };
 
-
   return (
     <div>
       <Navbar className="navbar--container">
@@ -65,25 +63,18 @@ export default function Navigation() {
         <Nav className="justify-content-center col">
           <Search />
         </Nav>
-        
 
-          { state.currentUser.id === 0 ?
-            <Nav className="justify-content-end col-4 pr-0">
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
-            </Nav>
-            :
-            <Nav className="justify-content-end col-4 pr-0">
-              <Link to="/saved">Saved</Link>
-              <Button onClick={logOut}>Logout</Button>
-            </Nav>
-          }
-          
-
-          
-
-
-        
+        {state.currentUser.id === 0 ? (
+          <Nav className="justify-content-end col-4 pr-0">
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+          </Nav>
+        ) : (
+          <Nav className="justify-content-end col-4 pr-0">
+            <Link to="/saved">Saved</Link>
+            <Button onClick={logOut}>Logout</Button>
+          </Nav>
+        )}
       </Navbar>
       {renderRedirect()}
     </div>

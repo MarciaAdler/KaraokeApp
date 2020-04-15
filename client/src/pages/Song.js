@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import SelectedSong from "../components/SelectedSong";
 import Video from "../components/Video";
 import Lyrics from "../components/Lyrics";
-import Navigation from "../components/Nav";
+
 function Song(props) {
   const [state, dispatch] = useStoreContext();
   const [video, setVideo] = useState("");
@@ -91,7 +91,6 @@ function Song(props) {
 
   return (
     <div>
-      <Navigation />
       <Container fluid>
         <Row className="justify-content-center py-3 video--container">
           <Col className="col-12">

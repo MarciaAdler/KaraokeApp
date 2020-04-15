@@ -28,6 +28,8 @@ router.get("/api/image/:title", (req, res) => {
     .then((response) => {
       res.send(response.hits[0].result);
     })
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      res.send({ image: "https://via.placeholder.com/150", path: "" })
+    );
 });
 module.exports = router;

@@ -44,28 +44,6 @@ export default function SavedSong({ songDetail, deleteSong }) {
     }
   };
 
-  // function updateSaved(userId) {
-  //   API.getSaved(userId)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       dispatch({
-  //         type: SET_SAVED_SONGS,
-  //         saved: response.data,
-  //       });
-  //       window.localStorage.setItem(
-  //         "savedSongs",
-  //         JSON.stringify(response.data)
-  //       );
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-  // function deleteSong(song) {
-  //   console.log(song);
-  //   API.deleteSavedSong(song.id).then(() => {
-  //     updateSaved();
-  //   });
-  // }
-
   return (
     <div>
       {songDetail.length
