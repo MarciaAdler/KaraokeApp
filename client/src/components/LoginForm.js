@@ -17,18 +17,20 @@ export default function LoginForm() {
   };
 
   function setSaved(userId) {
-    API.getSaved(userId)
-      .then((response) => {
-        dispatch({
-          type: SET_SAVED_SONGS,
-          saved: response.data,
-        });
-        window.localStorage.setItem(
-          "savedSongs",
-          JSON.stringify(response.data)
-        );
-      })
-      .catch((err) => console.log(err));
+    if (userId !== 0) {
+      API.getSaved(userId)
+        .then((response) => {
+          dispatch({
+            type: SET_SAVED_SONGS,
+            saved: response.data,
+          });
+          window.localStorage.setItem(
+            "savedSongs",
+            JSON.stringify(response.data)
+          );
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   function login(event) {

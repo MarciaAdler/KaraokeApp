@@ -49,26 +49,24 @@ export default function Saved(props) {
     setSongDetail((oldSongDetail) => [...oldSongDetail, data]);
   }
   function updateSaved(userId) {
-    if (state.currentUser.id !== 0) {
-      console.log(userId);
-      API.getSaved(userId)
-        .then((response) => {
-          console.log(response.data);
-          dispatch({
-            type: SET_SAVED_SONGS,
-            saved: response.data,
-          });
+    console.log(userId);
+    API.getSaved(userId)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: SET_SAVED_SONGS,
+          saved: response.data,
+        });
 
-          window.localStorage.setItem(
-            "savedSongs",
-            JSON.stringify(response.data)
-          );
-          response.data.forEach((song) => {
-            getSongs(song);
-          });
-        })
-        .catch((err) => console.log(err));
-    }
+        window.localStorage.setItem(
+          "savedSongs",
+          JSON.stringify(response.data)
+        );
+        response.data.forEach((song) => {
+          getSongs(song);
+        });
+      })
+      .catch((err) => console.log(err));
   }
   function deleteSong(song) {
     console.log(song);
