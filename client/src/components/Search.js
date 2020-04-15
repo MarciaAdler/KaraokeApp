@@ -14,6 +14,7 @@ export default function Search(props) {
     dispatch({ type: LOADING });
 
     setRedirect(false);
+
     const { data } = await API.getSongs(songRef);
 
     for (let i = 0; i < data.length; i++) {

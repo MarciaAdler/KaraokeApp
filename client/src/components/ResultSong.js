@@ -52,33 +52,7 @@ export default function ResultSong(props) {
   // Reset results global state on page refresh.
   // takes search query from url and checks to see if there is a value to reset state for.  if there is
   // search database and return results and set results global state.
-  // function getResultStateFromUrl(url) {
-  //   let resultsArr = [];
-  //   console.log(url);
-  //   dispatch({ type: LOADING });
-  //   if (state.results.length === 0 && window.location.search) {
-  //     API.getSongs(url.replace("?q=", ""))
-  //       .then((response) => {
-  //         resultsArr = response.data;
-  //         resultsArr.map((result) => {
-  //           API.getImage(result)
-  //             .then((image) => {
-  //               result["image"] = image.data.song_art_image_thumbnail_url;
-  //             })
-  //             .catch((err) => console.log(err));
-  //           console.log(result);
-  //           return result;
-  //         });
-  //       })
-  //       .then(() => {
-  //         dispatch({
-  //           type: SET_SONG_RESULTS,
-  //           results: resultsArr,
-  //         });
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // }
+
   async function getResultStateFromUrl(url) {
     if (state.results.length && window.location.search) {
       const { data } = await API.getSongs(url.replace("?q=", ""));
@@ -118,34 +92,37 @@ export default function ResultSong(props) {
   }
   return (
     <Row>
-      {state.results.length
-        ? state.results.map((result, index) => (
-            <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
-              {console.log(Object.keys(result))}
-              <img src={result.image} alt={result.title}></img>
-              <br />
-              Title: {result.title}
-              <br />
-              Artist: {result.artist}
-              <br />
-              Year: {result.year}
-              <br />
-              Explicit: {result.explicit === 0 ? "false" : "true"}
-              <br />
-              Duo: {result.duo === 0 ? "false" : "true"}
-              <br />
-              Styles: {result.styles}
-              <br />
-              <button
-                onClick={() => {
-                  selectSong(result);
-                }}
-              >
-                Select
-              </button>
-            </Col>
-          ))
-        : "no songs"}
+      {state.loading ? <p>LOADING</p> : ""}
+      {state.results.length ? (
+        state.results.map((result, index) => (
+          <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
+            {console.log(Object.keys(result))}
+            <img src={result.image} alt={result.title}></img>
+            <br />
+            Title: {result.title}
+            <br />
+            Artist: {result.artist}
+            <br />
+            Year: {result.year}
+            <br />
+            Explicit: {result.explicit === 0 ? "false" : "true"}
+            <br />
+            Duo: {result.duo === 0 ? "false" : "true"}
+            <br />
+            Styles: {result.styles}
+            <br />
+            <button
+              onClick={() => {
+                selectSong(result);
+              }}
+            >
+              Select
+            </button>
+          </Col>
+        ))
+      ) : (
+        <p className={state.loading ? "d-none" : ""}>No results</p>
+      )}
       {renderRedirect()}
     </Row>
   );
