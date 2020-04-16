@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { LOADING, CLEAR_RESULTS, SET_CURRENT_SONG } from "../utils/actions";
 import ResultSong from "../components/ResultSong";
@@ -76,8 +76,10 @@ export default function Saved(props) {
     });
   }
   return (
-    <div>
-      <SavedSong songDetail={songDetail} deleteSong={deleteSong} />
-    </div>
+    <Container fluid>
+      
+        <SavedSong songDetail={songDetail} deleteSong={deleteSong} />
+
+    </Container>
   );
 }

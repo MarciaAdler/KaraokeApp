@@ -8,6 +8,19 @@ $white: #FFFBFC;
 $blue: #62BBC1;
 $red: #D33F49;
 
+body
+  background-color: $blue;
+
+.btn
+  &-outline
+    &-primary
+      color: $blue;
+      border: 1px solid $blue;
+      &:hover
+        background-color: $blue;
+        border: 1px solid $blue;
+
+
 .navbar
   &--container
     background-color: $jet;
@@ -18,4 +31,35 @@ $red: #D33F49;
 .video
   &--container
     background-color: $blue;
+
+.saved-song
+  &--container
+    border-radius: 1.5rem;
+    -webkit-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
+    -moz-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
+    box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
+    background-color: $white;
+  &--artwork
+    width: 200px;
+    height: auto;
+    @include media-breakpoint-only(md)
+      width: 150px;
+  &--delete-btn
+    color: $red;
+    // border: 1px solid $red;
+    border: none;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    position: absolute;
+    top: 19px;
+    right: 30px;
+    &:hover
+      background-color: $red;
+      color: $white;
+  &--explicit
+    width: 50px;
+    height: auto;
+  &--duet
+    width: 50px;
+    height: auto;
 

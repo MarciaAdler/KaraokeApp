@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_SONG, SET_SAVED_SONGS } from "../utils/actions";
 import { Redirect } from "react-router-dom";
+import { Row, Col, Media } from "react-bootstrap";
 import API from "../utils/API";
+
 export default function SavedSong({ songDetail, deleteSong }) {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
@@ -45,41 +47,60 @@ export default function SavedSong({ songDetail, deleteSong }) {
   };
 
   return (
-    <div>
+    <Row>
       {songDetail.length
         ? songDetail.map((song) => (
-            <div key={song.id}>
-              <img src={song.image} alt={song.title} />
-              Title: {song.title}
-              <br />
-              Artist: {song.artist}
-              <br />
-              Year: {song.year}
-              <br />
-              Explicit: {song.explicit === 0 ? "false" : "true"}
-              <br />
-              Duo: {song.duo === 0 ? "false" : "true"}
-              <br />
-              Styles: {song.styles}
-              <br />
-              <button
-                onClick={() => {
-                  selectSong(song);
-                }}
-              >
-                Select
-              </button>
-              <button
-                onClick={() => {
-                  deleteSong(song);
-                }}
-              >
-                Delete
-              </button>
-            </div>
+            <Col className="my-3" md={6} key={song.id}>
+              <Media className="saved-song--container px-3 py-3 h-100">
+                <img className="saved-song--artwork mr-4" src={song.image} alt={song.title} />
+               
+                <Media.Body>
+                <h4 className="border-bottom pb-2">{song.title}</h4>
+   
+                <h5>{song.artist}</h5>
+                <span className="d-block mb-2">{song.year}</span>
+                <span className="d-block">Genres: {song.styles}</span>
+
+                <div>
+                  <Row className="mt-4">
+                    <Col>
+                          <button className="btn btn-outline-primary"
+                        onClick={() => {
+                          selectSong(song);
+                        }}
+                      >
+                        Select
+                      </button>
+                    </Col>
+                    {song.explicit === 0 ? "" : <Col className="col-auto"><img className="saved-song--explicit mr-2" alt="Explicit" src={require('../img/explicit.png')} /></Col>}
+                    
+                    {song.duo === 0 ? "" : <Col className="col-auto"><img className="saved-song--duet mr-2" alt="Duet" src={require('../img/duet-icon.png')} /></Col>}
+                    
+                    
+                    
+                    
+                  </Row>
+                </div>
+                
+
+                
+                
+                
+                
+                
+                <button className="saved-song--delete-btn rounded-circle px-2"
+                  onClick={() => {
+                    deleteSong(song);
+                  }}
+                >
+                  X
+                </button>
+                </Media.Body>
+              </Media> 
+            </Col>
           ))
         : "no songs"}
       {renderRedirect()}
-    </div>
+    </Row>
   );
 }
