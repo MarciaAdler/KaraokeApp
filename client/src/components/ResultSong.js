@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Media } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_SONG, SET_SONG_RESULTS, LOADING } from "../utils/actions";
 import { Redirect } from "react-router-dom";
@@ -81,32 +81,36 @@ export default function ResultSong(props) {
       {state.results.length ? (
         state.results.map((result, index) => (
           <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
-            <img
-              src={
-                result.image ? result.image : "https://via.placeholder.com/150"
-              }
-              alt={result.title}
-            ></img>
-            <br />
-            Title: {result.title}
-            <br />
-            Artist: {result.artist}
-            <br />
-            Year: {result.year}
-            <br />
-            Explicit: {result.explicit === 0 ? "false" : "true"}
-            <br />
-            Duo: {result.duo === 0 ? "false" : "true"}
-            <br />
-            Styles: {result.styles}
-            <br />
-            <button
-              onClick={() => {
-                selectSong(result);
-              }}
-            >
-              Select
-            </button>
+            <Media className="saved-song--container px-3 py-3 h-100">
+              <img style={{width: "75px", height: "auto"}}
+                src={
+                  result.image ? result.image : "https://via.placeholder.com/150"
+                }
+                alt={result.title}
+              ></img>
+              <Media.Body>
+                 
+                  <p className="">{result.title}</p>
+                
+                 <p>{result.artist}</p>
+                 
+                  Year: {result.year}
+                  <br />
+                  Explicit: {result.explicit === 0 ? "false" : "true"}
+                  <br />
+                  Duo: {result.duo === 0 ? "false" : "true"}
+                  <br />
+                  Styles: {result.styles}
+                  <br />
+                  <button
+                    onClick={() => {
+                      selectSong(result);
+                    }}
+                  >
+                    Select
+                  </button>
+                </Media.Body>
+              </Media>
           </Col>
         ))
       ) : (
