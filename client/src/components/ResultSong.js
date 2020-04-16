@@ -54,41 +54,26 @@ export default function ResultSong(props) {
   // search database and return results and set results global state.
 
   async function getResultStateFromUrl(url) {
-    if (state.results.length && window.location.search) {
-      const { data } = await API.getSongs(url.replace("?q=", ""));
-      for (let i = 0; i < data.length; i++) {
-        if (i <= data.length) {
-          const result = data[i];
-          console.log(result);
-          const image = await API.getImage(result);
-          result["image"] = image.data.song_art_image_thumbnail_url;
+    // dispatch({ type: LOADING });
+    // if the there is a state.results & window.location.search is true
+    // if (state.results.length && window.location.search) {
+    const { data } = await API.getSongs(url.replace("?q=", ""));
+    // go through each song in the array returned from getSongs
+    for (let i = 0; i < data.length; i++) {
+      // for each index(song), get the image for that song
+      if (i <= data.length) {
+        const result = data[i];
 
-          console.log("data[i]", data[i]);
-          console.log(result);
-        }
+        const image = await API.getImage(result);
+        // add the image url to the song object
+        result["image"] = image.data.song_art_image_thumbnail_url;
       }
-      dispatch({
-        type: SET_SONG_RESULTS,
-        results: data,
-      });
-    } else {
-      const { data } = await API.getSongs(url.replace("?q=", ""));
-      for (let i = 0; i < data.length; i++) {
-        if (i <= data.length) {
-          const result = data[i];
-          console.log(result);
-          const image = await API.getImage(result);
-          result["image"] = image.data.song_art_image_thumbnail_url;
-
-          console.log("data[i]", data[i]);
-          console.log(result);
-        }
-      }
-      dispatch({
-        type: SET_SONG_RESULTS,
-        results: data,
-      });
     }
+    // set the global state with the new array of song objects (including image)
+    dispatch({
+      type: SET_SONG_RESULTS,
+      results: data,
+    });
   }
   return (
     <Row>
@@ -96,7 +81,6 @@ export default function ResultSong(props) {
       {state.results.length ? (
         state.results.map((result, index) => (
           <Col sm={6} md={4} lg={3} key={result.id} className="my-5 px-4">
-            {console.log(Object.keys(result))}
             <img
               src={
                 result.image ? result.image : "https://via.placeholder.com/150"

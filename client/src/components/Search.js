@@ -10,32 +10,30 @@ export default function Search(props) {
   const songRef = useRef();
   const [state, dispatch] = useStoreContext();
   async function getSongs(songRef) {
-    console.log(songRef);
     dispatch({ type: LOADING });
 
     setRedirect(false);
 
     const { data } = await API.getSongs(songRef);
+    console.log("test: ", data);
+    if (data.length) {
+      for (let i = 0; i < data.length; i++) {
+        if (i <= data.length) {
+          const result = data[i];
 
-    for (let i = 0; i < data.length; i++) {
-      if (i <= data.length) {
-        const result = data[i];
-        console.log(result);
-        const image = await API.getImage(result);
-        result["image"] = image.data.song_art_image_thumbnail_url;
+          const image = await API.getImage(result);
+          result["image"] = image.data.song_art_image_thumbnail_url;
+        }
 
-        console.log("data[i]", data[i]);
-        console.log(result);
+        setRedirect(true);
       }
-
+      dispatch({
+        type: SET_SONG_RESULTS,
+        results: data,
+      });
+    } else {
       setRedirect(true);
     }
-    dispatch({
-      type: SET_SONG_RESULTS,
-      results: data,
-    });
-
-    console.log("results after dispatch", data);
   }
 
   const renderRedirect = () => {
@@ -59,7 +57,6 @@ export default function Search(props) {
       results: [],
     });
     getSongs(songRef.current.value);
-    console.log("state", state.results);
   };
 
   return (

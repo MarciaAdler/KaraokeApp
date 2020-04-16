@@ -8,10 +8,24 @@ import { SET_SONG_RESULTS } from "../utils/actions";
 export default function SearchResults(props) {
   const [state, dispatch] = useStoreContext();
 
+  const searchVal = window.location.search
+    .replace("?q=", "")
+    .replace(/%20/g, " ")
+    .replace(/%27/g, "'");
+  console.log(searchVal);
   return (
     <div>
       <Container fluid>
-        <ResultSong />
+        {state.loading ? (
+          <h2>loading</h2>
+        ) : (
+          <div>
+            <h2>
+              Showing {state.results.length} results for "{searchVal}".
+            </h2>{" "}
+            <ResultSong />
+          </div>
+        )}
       </Container>
     </div>
   );
