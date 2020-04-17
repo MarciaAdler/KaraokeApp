@@ -54,17 +54,25 @@ export default function Navigation() {
     }
   };
 
+  const hideSearchBar = () => {
+    if (redirect === true) {
+      return <Redirect to="/login" />;
+    }
+  }
+
 
   // Function to toggle showing the search bar on mobile from the navigation bar
   const showSearchInput = () => {
     let searchBar = document.querySelector(".search--container").classList;
     let searchBtn = document.querySelector(".search--mobile-btn").classList;
+    let searchInput = document.querySelector("#search-input");
 
     
     if (searchBar.contains("d-none")) {
       // If the search bar is hidden, clicking on the Search button expands search bar
       searchBar.remove('d-none');
       searchBtn.add('active'); 
+      searchInput.focus();
 
       // Delay adding this class so CSS transition expand animation takes effect
       setTimeout(function() {
