@@ -59,17 +59,19 @@ export default function Search(props) {
     getSongs(songRef.current.value);
   };
 
+  // When search bar input's focus is removed on mobile,
+  // collapse the search bar
   const hideMobileSearch = () => {
     let searchBar = document.querySelector(".search--container").classList;
     let searchBtn = document.querySelector(".search--mobile-btn").classList;
 
     if (searchBar.contains("showing-mobile")) {
-        // If the search bar is showing, clicking on the Search button collapses search bar
-        searchBar.remove('showing-mobile');
-        searchBtn.remove('active'); 
 
         // Delay adding this class so CSS transition collapse animation takes effect
+        // After user presses the search button on mobile
         setTimeout(function() {
+          searchBar.remove('showing-mobile');
+          searchBtn.remove('active'); 
           searchBar.add('d-none'); 
       }, 200);
     }
