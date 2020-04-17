@@ -32,6 +32,45 @@ body
   &--container
     background-color: $blue;
 
+.result-song
+  &--container
+    border-radius: 1.5rem;
+    -webkit-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
+    -moz-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
+    box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
+    background-size: cover;
+    height: 200px;
+    background-color: $white;
+    color: $white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    &:hover
+      cursor: pointer;
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+    &__essentials
+      z-index: 10;
+      position: relative;
+    p
+      position: relative;
+    &__background
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $jet;
+      opacity: 0.3;
+  &--duet
+    width: 50px;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
 .saved-song
   &--container
     border-radius: 1.5rem;
@@ -39,6 +78,13 @@ body
     -moz-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
     box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
     background-color: $white;
+    color: $black;
+    transition: all 0.3s ease;
+    &:hover
+      cursor: pointer;
+      -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      transform: scale(1.05);
   &--artwork
     width: auto;
     height: 200px;
@@ -52,8 +98,8 @@ body
     background-color: #FFFFFF;
     font-weight: bold;
     position: absolute;
-    top: 19px;
-    right: 30px;
+    bottom: 10px;
+    right: 20px;
     &:hover
       background-color: $red;
       color: $white;

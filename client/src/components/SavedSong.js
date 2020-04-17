@@ -50,28 +50,22 @@ export default function SavedSong({ songDetail, deleteSong }) {
     <Row>
       {songDetail.length
         ? songDetail.map((song) => (
-            <Col className="my-3" md={6} key={song.id}>
-              <Media className="saved-song--container px-3 py-3 h-100">
+            <Col className="my-3" md={6} lg={4} key={song.id}>
+              <Media onClick={() => {
+              selectSong(song);
+            }}  className="saved-song--container px-3 py-3 h-100">
                 <img className="saved-song--artwork mr-4" src={song.image} alt={song.title} />
                
                 <Media.Body>
                 <h4 className="border-bottom pb-2">{song.title}</h4>
    
                 <h5>{song.artist}</h5>
-                <span className="d-block mb-2">{song.year}</span>
-                <span className="d-block">Genres: {song.styles}</span>
+                <span className="d-block mb-2">Released: {song.year}</span>
+                <span className="d-block">Genres: {song.styles.replace(/,/g, ", ")}</span>
 
                 <div>
                   <Row className="mt-4">
-                    <Col>
-                          <button className="btn btn-outline-primary"
-                        onClick={() => {
-                          selectSong(song);
-                        }}
-                      >
-                        Select
-                      </button>
-                    </Col>
+                    
                     {song.explicit === 0 ? "" : <Col className="col-auto"><img className="saved-song--explicit mr-2" alt="Explicit" src={require('../img/explicit.png')} /></Col>}
                     
                     {song.duo === 0 ? "" : <Col className="col-auto"><img className="saved-song--duet mr-2" alt="Duet" src={require('../img/duet-icon.png')} /></Col>}
@@ -88,15 +82,16 @@ export default function SavedSong({ songDetail, deleteSong }) {
                 
                 
                 
-                <button className="saved-song--delete-btn rounded-circle px-2"
+                
+                </Media.Body>
+              </Media> 
+              <button className="saved-song--delete-btn rounded-circle px-2"
                   onClick={() => {
                     deleteSong(song);
                   }}
                 >
                   X
                 </button>
-                </Media.Body>
-              </Media> 
             </Col>
           ))
         : "no songs"}
