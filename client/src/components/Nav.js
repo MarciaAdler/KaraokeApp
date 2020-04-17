@@ -87,7 +87,7 @@ export default function Navigation() {
 
   return (
     <div>
-      <Navbar className="navbar--container">
+      <Navbar className="navbar--container fixed-top">
         <Navbar.Brand className="col-4 pl-0">
           <Link to="/">
             <img className="navbar--logo d-none d-sm-block" src={require("../img/logo-white.png")} alt="SingAlong Karaoke" />
