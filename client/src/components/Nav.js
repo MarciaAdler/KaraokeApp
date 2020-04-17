@@ -54,25 +54,61 @@ export default function Navigation() {
     }
   };
 
+
+  // Function to toggle showing the search bar on mobile from the navigation bar
+  const showSearchInput = () => {
+    let searchBar = document.querySelector(".search--container").classList;
+    let searchBtn = document.querySelector(".search--mobile-btn").classList;
+
+    
+    if (searchBar.contains("d-none")) {
+      // If the search bar is hidden, clicking on the Search button expands search bar
+      searchBar.remove('d-none');
+      searchBtn.add('active'); 
+
+      // Delay adding this class so CSS transition expand animation takes effect
+      setTimeout(function() {
+          searchBar.add('showing-mobile'); 
+          
+      }, 100);
+
+    } else {
+      // If the search bar is showing, clicking on the Search button collapses search bar
+      searchBar.remove('showing-mobile');
+      searchBtn.remove('active'); 
+
+      // Delay adding this class so CSS transition collapse animation takes effect
+      setTimeout(function() {
+        searchBar.add('d-none'); 
+    }, 200);
+
+    }
+  }
+
   return (
     <div>
       <Navbar className="navbar--container">
         <Navbar.Brand className="col-4 pl-0">
-          <Link to="/">SingAlong Karaoke</Link>
+          <Link to="/">
+            <img className="navbar--logo d-none d-sm-block" src={require("../img/logo-white.png")} alt="SingAlong Karaoke" />
+            <img className="navbar--logo d-block d-sm-none" src={require("../img/logo-white-short.png")} alt="SingAlong Karaoke" />            
+            </Link>
         </Navbar.Brand>
         <Nav className="justify-content-center col">
+          <span onClick={showSearchInput} className="search--mobile-btn d-inline-block d-md-none"><i class="fas fa-search"></i>&nbsp;Search</span>
+
           <Search />
         </Nav>
 
         {state.currentUser.id === 0 ? (
           <Nav className="justify-content-end col-4 pr-0">
-            <Link to="/login">Login</Link>
+            <Link to="/login" className="mr-4">Login</Link>
             <Link to="/signup">Signup</Link>
           </Nav>
         ) : (
           <Nav className="justify-content-end col-4 pr-0">
-            <Link to="/saved">Saved</Link>
-            <Button onClick={logOut}>Logout</Button>
+            <Link to="/saved" className="mr-4"><i class="fas fa-star"></i>&nbsp;Saved</Link>
+            <Link onClick={logOut}><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</Link>
           </Nav>
         )}
       </Navbar>

@@ -59,9 +59,11 @@ export default function Search(props) {
     getSongs(songRef.current.value);
   };
 
+  
+
   return (
-    <div className="w-100">
-      <Form inline className="w-100" onSubmit={handleSubmit}>
+    <div className="text-center text-md-left d-md-block w-100 search--container d-none">
+      <Form id="search-bar" inline className="w-100" onSubmit={handleSubmit}>
         <InputGroup className="w-100">
           <FormControl
             placeholder="Search for a Song"
@@ -76,7 +78,7 @@ export default function Search(props) {
               disabled={state.loading}
               onClick={handleSubmit}
             >
-              Button
+              Search
             </Button>
           </InputGroup.Append>
         </InputGroup>

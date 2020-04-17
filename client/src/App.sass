@@ -7,6 +7,9 @@ $jet: #30332E;
 $white: #FFFBFC;
 $blue: #62BBC1;
 $red: #D33F49;
+$green: #6B8F71;
+$topaz: #F2C57C;
+$purple: #9BA2FF;
 
 body
   background-color: $blue;
@@ -19,6 +22,12 @@ body
       &:hover
         background-color: $blue;
         border: 1px solid $blue;
+    &-secondary
+      color: $purple;
+      border: 1px solid $purple;
+      &:hover
+        background-color: $purple;
+        border: 1px solid $purple;
 
 
 .navbar
@@ -27,6 +36,43 @@ body
     color: $white;
     a
       color: $white;
+    .fa-star
+      color: $topaz;
+    .fa-sign-out-alt
+      color: #aeb5bd;
+    .fa-search
+      color: $purple;
+  &--logo
+    height: 40px;
+    width: auto;
+
+.search
+  &--container
+      @include media-breakpoint-down(sm)
+        position: fixed;
+        top: 66px;
+        left: 0;
+        height: 0;
+        padding: 0px 10px;
+        overflow: hidden;
+        background-color: $black;
+        transition: all 0.5s ease;
+        z-index: 99;
+        &.showing-mobile
+          padding: 15px 10px;
+          height: auto;
+  &--mobile-btn
+    padding: 5px 15px;
+    border-radius: 30px;
+    &.active
+      background-color: $purple;
+      color: $white;
+      .fa-search
+        color: $white;
+
+
+
+      
 
 .video
   &--container
@@ -87,10 +133,19 @@ body
       transform: scale(1.05);
   &--artwork
     width: auto;
-    height: 200px;
-    @include media-breakpoint-only(md)
+    max-width: 200px;
+    height: auto;
+    max-height: 200px;
+    @include media-breakpoint-down(lg)
       width: auto;
-      height: 150px;
+      max-width: 150px;
+      height: auto;
+      max-height: 150px;
+    @include media-breakpoint-only(xs)
+      width: auto;
+      max-width: 100px;
+      height: auto;
+      max-height: 100px;
   &--delete-btn
     color: $red;
     // border: 1px solid $red;
