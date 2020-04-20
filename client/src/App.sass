@@ -13,12 +13,16 @@ $darkblue: #235789
 body
   background-color: $blue
   padding-top: 66px
+  font-family: 'Baloo Bhaina 2', cursive
 
 a
   color: $darkblue
   font-weight: bold
   &:hover
     color: $green
+h1,h2,h3,h4,h5,h6
+  font-family: 'Baloo Bhaina 2', cursive
+  font-weight: bold
 .home
   &--hero
     background-image: url("./img/homepage-image.jpg")
@@ -145,7 +149,25 @@ a
     position: absolute
     bottom: 0
     right: 0
-
+.current-song
+  &--detail
+    width: 50px
+    height: auto
+  &--lyrics
+    padding: 20px
+    background-color: $white
+    border-radius: 1em
+  &--saved-btn
+    color: $white
+    background-color: $jet
+    margin-top: 5px
+    &:hover
+      background-color: $purple
+      color: $white
+  &--btn-lyrics
+    border-radius: .5em
+.fa-star
+  color: $topaz
 .saved-song
   &--container
     border-radius: 1.5rem

@@ -53,24 +53,38 @@ export default function SelectedSong(props) {
           alt={state.currentSong.title}
         />
         <Media.Body>
-          Title: {state.currentSong.title}
+          <h4>{state.currentSong.title}</h4>
+          <h5>{state.currentSong.artist}</h5>
+          Released: {state.currentSong.year}
           <br />
-          Artist: {state.currentSong.artist}
+          Genres: {state.currentSong.styles.replace(/,/g, ", ")}
           <br />
-          Year: {state.currentSong.year}
-          <br />
-          Explicit: {state.currentSong.explicit === 0 ? "false" : "true"}
-          <br />
-          Duo: {state.currentSong.duo === 0 ? "false" : "true"}
-          <br />
-          Styles: {state.currentSong.styles}
+          {state.currentSong.explicit === 0 ? (
+            ""
+          ) : (
+            <img
+              className="current-song--detail"
+              alt="explicit"
+              src={require("../img/explicit.png")}
+            />
+          )}{" "}
+          {state.currentSong.duo === 0 ? (
+            ""
+          ) : (
+            <img
+              className="current-song--detail"
+              alt="duet"
+              src={require("../img/duet-icon.png")}
+            />
+          )}
           <br />
           <button
+            className="btn current-song--saved-btn"
             onClick={() => {
               saveSong();
             }}
           >
-            Save
+            <i class="fas fa-star"></i>&nbsp;Save
           </button>
         </Media.Body>
       </Media>

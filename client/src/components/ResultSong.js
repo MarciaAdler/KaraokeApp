@@ -80,55 +80,41 @@ export default function ResultSong(props) {
       {state.loading ? <p>LOADING</p> : ""}
       {state.results.length ? (
         state.results.map((result, index) => (
+          <Col
+            onClick={() => {
+              selectSong(result);
+            }}
+            sm={6}
+            md={4}
+            lg={3}
+            key={result.id}
+            className="my-3 px-4"
+          >
+            <div
+              className="result-song--container px-3 py-3"
+              style={{ backgroundImage: `url(${result.image})` }}
+            >
+              <div class="result-song--container__essentials text-center my-auto mx-auto h-100">
+                <p className="result-song--title mb-2">{result.title}</p>
+                <p className="result-song--artist">{result.artist}</p>
+                <p className="result-song--genres">
+                  {" "}
+                  Genres: {result.styles.replace(/,/g, ", ")}
+                </p>
 
-          <Col onClick={() => {
-            selectSong(result);
-          }} sm={6} md={4} lg={3} key={result.id} className="my-3 px-4">
-            <div className="result-song--container px-3 py-3" style={{backgroundImage: `url(${result.image})`}}>
-
-
-                <div class="result-song--container__essentials text-center my-auto mx-auto h-100">
-                  <p className="result-song--title mb-2">{result.title}</p>
-                  <p className="result-song--artist">{result.artist}</p>
-                  <p className="result-song--genres"> Genres: {result.styles.replace(/,/g, ", ")}</p>
-
-                  {result.duo === 0 ? "" : <img className="result-song--duet mr-2" alt="Duet" src={require('../img/duet-icon-white.png')} />}
-                </div>
-
-              <div className="result-song--container__background">
-                &nbsp;
+                {result.duo === 0 ? (
+                  ""
+                ) : (
+                  <img
+                    className="result-song--duet mr-2"
+                    alt="Duet"
+                    src={require("../img/duet-icon-white.png")}
+                  />
+                )}
               </div>
-            {/* <Media className="saved-song--container px-3 py-3 h-100">
-              <img style={{width: "75px", height: "auto"}}
-                src={
-                  result.image ? result.image : "https://via.placeholder.com/150"
-                }
-                alt={result.title}
-              ></img>
-              <Media.Body>
-                 
-                  <p className="">{result.title}</p>
-                
-                 <p>{result.artist}</p>
-                 
-                  Year: {result.year}
-                  <br />
-                  Explicit: {result.explicit === 0 ? "false" : "true"}
-                  <br />
-                  Duo: {result.duo === 0 ? "false" : "true"}
-                  <br />
-                  Styles: {result.styles}
-                  <br />
-                  <button
-                    onClick={() => {
-                      selectSong(result);
-                    }}
-                  >
-                    Select
-                  </button>
-                </Media.Body>
-              </Media> */}
-              </div>
+
+              <div className="result-song--container__background">&nbsp;</div>
+            </div>
           </Col>
         ))
       ) : (
