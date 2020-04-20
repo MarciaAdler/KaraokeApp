@@ -6,8 +6,13 @@ export default function Signup() {
   return (
     <div>
       <Container>
-        <Row>
-          <Col>
+        <Row className="justify-content-center">
+          <Col className="col-auto">
+            <img className="my-3" src={require("../img/logo.png")} />
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col className="col-md-6">
             <SignupForm />
           </Col>
         </Row>

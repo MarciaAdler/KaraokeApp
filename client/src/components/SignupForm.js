@@ -29,12 +29,12 @@ export default function SignupForm() {
     } else {
       API.createUser({
         username: nameRef.current.value,
-        password: passwordRef.current.value
+        password: passwordRef.current.value,
       })
-        .then(res => {
+        .then((res) => {
           setSendLogin(true);
         })
-        .catch(err => alert("Username already exists"));
+        .catch((err) => alert("Username already exists"));
     }
   }
   return (
@@ -69,9 +69,9 @@ export default function SignupForm() {
           ref={confirmRef}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" onClick={signup}>
+      <button className="btn btn-background" type="submit" onClick={signup}>
         Submit
-      </Button>
+      </button>
       {renderRedirect()}
     </Form>
   );

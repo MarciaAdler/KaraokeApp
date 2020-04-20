@@ -1,170 +1,195 @@
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap"
 
-/* color scheme */
-
-$black: #010400;
-$jet: #30332E;
-$white: #FFFBFC;
-$blue: #62BBC1;
-$red: #D33F49;
-$green: #6B8F71;
-$topaz: #F2C57C;
-$purple: #9BA2FF;
+$black: #010400
+$jet: #30332E
+$white: #FFFBFC
+$blue: #62BBC1
+$red: #D33F49
+$green: #21897E
+$topaz: #F2C57C
+$purple: #9BA2FF
+$darkblue: #235789
 
 body
-  background-color: $blue;
-  padding-top: 66px;
+  background-color: $blue
+  padding-top: 66px
+
+a
+  color: $darkblue
+  font-weight: bold
+  &:hover
+    color: $green
+.home
+  &--hero
+    background-image: url("./img/homepage-image.jpg")
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: 20% 75%
+    color: $white
+    // height: 250px
+  &--saved-title
+    small
+      font-size: 14px
+
+.login-form
+  background-color: rgba(0,0,0,0.5)
+  padding: 20px
+  border-radius: 1em
+  .form-label
+    color: $white
 
 .btn
   &-outline
     &-primary
-      color: $blue;
-      border: 1px solid $blue;
+      color: $blue
+      border: 1px solid $blue
       &:hover
-        background-color: $blue;
-        border: 1px solid $blue;
+        background-color: $blue
+        border: 1px solid $blue
     &-secondary
-      color: $purple;
-      border: 1px solid $purple;
+      color: $purple
+      border: 1px solid $purple
       &:hover
-        background-color: $purple;
-        border: 1px solid $purple;
-
+        background-color: $purple
+        border: 1px solid $purple
+  &-background
+    color: $purple
+    background-color: $jet
+    border: 1px solid $purple
+    &:hover
+      background-color: $purple
+      border: 1px solid $purple
+      color: $white
 
 .navbar
   &--container
-    background-color: $jet;
-    color: $white;
+    background-color: $jet
+    color: $white
     a
-      color: $white;
+      color: $white
     .fa-star
-      color: $topaz;
+      color: $topaz
     .fa-sign-out-alt
-      color: #aeb5bd;
+      color: #aeb5bd
     .fa-search
-      color: $purple;
+      color: $purple
   &--logo
-    height: 40px;
-    width: auto;
+    height: 40px
+    width: auto
 
 .search
   &--container
-      @include media-breakpoint-down(sm)
-        position: fixed;
-        top: 66px;
-        left: 0;
-        height: 0;
-        padding: 0px 10px;
-        overflow: hidden;
-        background-color: $black;
-        transition: all 0.5s ease;
-        z-index: 99;
-        &.showing-mobile
-          padding: 15px 10px;
-          height: auto;
+    @include media-breakpoint-down(sm)
+      position: fixed
+      top: 66px
+      left: 0
+      height: 0
+      padding: 0px 10px
+      overflow: hidden
+      background-color: $black
+      transition: all 0.5s ease
+      z-index: 99
+      &.showing-mobile
+        padding: 15px 10px
+        height: auto
   &--mobile-btn
-    padding: 5px 15px;
-    border-radius: 30px;
+    padding: 5px 15px
+    border-radius: 30px
     &:hover
-      cursor: pointer;
+      cursor: pointer
     &.active
-      background-color: $purple;
-      color: $white;
+      background-color: $purple
+      color: $white
       .fa-search
-        color: $white;
-
-
-
-      
+        color: $white
 
 .video
   &--container
-    background-color: $blue;
+    background-color: $blue
 
 .result-song
   &--container
-    border-radius: 1.5rem;
-    -webkit-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
-    -moz-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
-    box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
-    background-size: cover;
-    height: 200px;
-    background-color: $white;
-    color: $white;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    border-radius: 1.5rem
+    -webkit-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23)
+    -moz-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23)
+    box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23)
+    background-size: cover
+    height: 200px
+    background-color: $white
+    color: $white
+    position: relative
+    overflow: hidden
+    transition: all 0.3s ease
     &:hover
-      cursor: pointer;
-      -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      transform: scale(1.1);
+      cursor: pointer
+      -webkit-transform: scale(1.1)
+      -ms-transform: scale(1.1)
+      transform: scale(1.1)
     &__essentials
-      z-index: 10;
-      position: relative;
+      z-index: 10
+      position: relative
     p
-      position: relative;
+      position: relative
     &__background
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: $jet;
-      opacity: 0.3;
+      position: absolute
+      z-index: 1
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background-color: $jet
+      opacity: 0.3
   &--duet
-    width: 50px;
-    height: auto;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    width: 50px
+    height: auto
+    position: absolute
+    bottom: 0
+    right: 0
 
 .saved-song
   &--container
-    border-radius: 1.5rem;
-    -webkit-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
-    -moz-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
-    box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23);
-    background-color: $white;
-    color: $black;
-    transition: all 0.3s ease;
+    border-radius: 1.5rem
+    -webkit-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23)
+    -moz-box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23)
+    box-shadow: -5px 5px 5px -1px rgba(1,4,0,0.23)
+    background-color: $white
+    color: $black
+    transition: all 0.3s ease
     &:hover
-      cursor: pointer;
-      -webkit-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-      transform: scale(1.05);
+      cursor: pointer
+      -webkit-transform: scale(1.05)
+      -ms-transform: scale(1.05)
+      transform: scale(1.05)
   &--artwork
-    width: auto;
-    max-width: 200px;
-    height: auto;
-    max-height: 200px;
+    width: auto
+    max-width: 200px
+    height: auto
+    max-height: 200px
     @include media-breakpoint-down(lg)
-      width: auto;
-      max-width: 150px;
-      height: auto;
-      max-height: 150px;
+      width: auto
+      max-width: 150px
+      height: auto
+      max-height: 150px
     @include media-breakpoint-only(xs)
-      width: auto;
-      max-width: 100px;
-      height: auto;
-      max-height: 100px;
+      width: auto
+      max-width: 100px
+      height: auto
+      max-height: 100px
   &--delete-btn
-    color: $red;
+    color: $red
     // border: 1px solid $red;
-    border: none;
-    background-color: #FFFFFF;
-    font-weight: bold;
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
+    border: none
+    background-color: #FFFFFF
+    font-weight: bold
+    position: absolute
+    bottom: 10px
+    right: 20px
     &:hover
-      background-color: $red;
-      color: $white;
+      background-color: $red
+      color: $white
   &--explicit
-    width: 50px;
-    height: auto;
+    width: 50px
+    height: auto
   &--duet
-    width: 50px;
-    height: auto;
-
+    width: 50px
+    height: auto

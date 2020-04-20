@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useStoreContext } from "../utils/GlobalState";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import API from "../utils/API";
 import { SET_CURRENT_USER, SET_SAVED_SONGS } from "../utils/actions";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 export default function LoginForm() {
   const [state, dispatch] = useStoreContext();
@@ -74,7 +74,6 @@ export default function LoginForm() {
           />
           <Form.Text className="text-muted"></Form.Text>
         </Form.Group>
-
         <Form.Group controlId="loginPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -83,10 +82,21 @@ export default function LoginForm() {
             ref={passwordRef}
           />
         </Form.Group>
-
-        <Button variant="primary" type="submit" onClick={login}>
+        <button
+          className="btn btn-outline-secondary"
+          type="submit"
+          onClick={login}
+        >
           Submit
-        </Button>
+        </button>
+        <small>
+          {" "}
+          &nbsp; No account?
+          <Link push to="/signup">
+            &nbsp;Click here
+          </Link>
+          &nbsp;to signup
+        </small>
       </Form>
       {renderRedirect()}
     </div>
