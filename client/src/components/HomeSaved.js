@@ -8,16 +8,16 @@ export default function HomeSaved() {
   const [state, dispatch] = useStoreContext();
   const [redirect, setRedirect] = useState(false);
   const [songDetail, setSongDetail] = useState([]);
+  const [localSaved, setLocalSaved] = useState(state.saved);
 
-  useEffect(() => {
-    const savedSongsLs = JSON.parse(localStorage.getItem("savedSongs"));
-
+  function start() {
     for (let i = 0; i < 4; i++) {
-      const song = savedSongsLs[i];
-
+      console.log(state.saved);
+      const song = state.saved[i];
       getSongs(song);
     }
-  }, []);
+  }
+
   function selectSong(result) {
     const song = {
       id: result.id,
@@ -38,8 +38,6 @@ export default function HomeSaved() {
     console.log(state.currentSong);
   }
   async function getSongs(saved) {
-    // Make API call to find the track details in the db
-    // by the song id
     const { data } = await API.findSaved(saved.songId);
 
     // Make API call to get image src from Genius
@@ -52,6 +50,9 @@ export default function HomeSaved() {
     // update the songDetail state array with the existing values
     // along with the new data that was retrieved
     setSongDetail((oldSongDetail) => [...oldSongDetail, data]);
+
+    // Make API call to find the track details in the db
+    // by the song id
   }
 
   const renderRedirect = () => {
