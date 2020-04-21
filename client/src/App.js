@@ -1,5 +1,6 @@
 import React from "react";
 import Navigation from "./components/Nav";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import { StoreProvider } from "../src/utils/GlobalState";
 import Song from "./pages/Song";
@@ -27,6 +28,7 @@ function App() {
           </Switch>
         </Router>
       </StoreProvider>
+      <Footer />
     </div>
   );
 }
