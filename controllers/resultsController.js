@@ -31,4 +31,13 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findAllByArtist: function (req, res) {
+    db.Song.findAll({
+      where: {
+        artist: req.params.artist
+      }
+    })
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+  }
 };

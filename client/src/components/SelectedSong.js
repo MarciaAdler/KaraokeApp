@@ -1,4 +1,5 @@
 import React from "react";
+import ArtistSongs from "./ArtistSongs";
 import {
   Form,
   InputGroup,
@@ -104,6 +105,8 @@ export default function SelectedSong(props) {
           
         </Media.Body>
       </Media>
+
+      <ArtistSongs />
     </Col>
   );
 }

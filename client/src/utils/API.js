@@ -43,4 +43,7 @@ export default {
   deleteSavedSong: function (currentSong) {
     return axios.delete("/api/savedsongs/" + currentSong);
   },
+  getSongsByArtist: function (currentSong) {
+    return axios.get("/api/songs/" + currentSong);
+  }
 };

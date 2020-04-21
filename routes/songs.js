@@ -28,6 +28,8 @@ router.get("/api/song/:title", (req, res) => {
   });
 });
 
+router.route("/api/songs/:artist").get(resultsController.findAllByArtist);
+
 router.route("/api/searchresults/:title").get(resultsController.findAll);
 
 router.route("/api/result/:query").get(resultsController.findOne);
