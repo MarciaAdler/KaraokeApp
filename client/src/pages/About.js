@@ -5,18 +5,22 @@ export default function About() {
 
 
   return (
-    <Container className="about">
+    <Container className="about py-3">
         <Row>
             <Col className="text-center">
-            <img className="logo" src={"../img/logo.png"} />
+                <img className="logo" src={require("../img/logo.png")} />
             </Col>
         </Row>
-        <Row>
-            <Col>
-                
-            </Col>
-            <Col>
-            
+        <Row className="justify-content-center mt-3">
+            <Col className="about--container col-auto px-3 py-3">
+                <p>SingAlong Karaoke was developed by <a href="https://www.linkedin.com/in/francis-moran-63970665/" target="_blank">Francis Moran</a> and <a href="https://www.linkedin.com/in/marciaadler/" target="_blank">Marcia Adler</a>. </p>
+
+                <p>Technologies used: React, Express, MySQL, Sequelize, Javascript, Bootstrap, Sass</p>
+
+                <p>APIs used: Youtube API, Genius API, Musixmatch API</p>
+
+                <p>Credits: Duet icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
+
             </Col>
         </Row>
     </Container>
