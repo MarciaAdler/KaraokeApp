@@ -12,7 +12,7 @@ export default function SignupForm() {
   const confirmRef = useRef();
   const renderRedirect = () => {
     if (sendLogin) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/" />;
     }
   };
   function signup(event) {
