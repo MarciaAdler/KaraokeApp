@@ -15,9 +15,13 @@ export default function SearchResults(props) {
   console.log(searchVal);
   return (
     <div>
-      <Container fluid>
+      <Container fluid className="pt-4">
         {state.loading ? (
-          <h2>loading</h2>
+          <div className="text-center">
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+          </div>
         ) : (
           <div>
             <h2>
