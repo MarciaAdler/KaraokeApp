@@ -19,7 +19,7 @@ export default function Navigation() {
         currentUser: currentUserLs,
       });
 
-      console.log(currentUserLs.id);
+      // console.log(currentUserLs.id);
 
       setSaved(currentUserLs.id);
     } else if (state.currentUser.id !== 0) {
@@ -28,7 +28,7 @@ export default function Navigation() {
   }, []);
 
   function setSaved(userId) {
-    console.log("setSaved in Nav: ", userId);
+    // console.log("setSaved in Nav: ", userId);
     API.getSaved(userId)
       .then((response) => {
         dispatch({
@@ -104,7 +104,7 @@ export default function Navigation() {
             onClick={showSearchInput}
             className="search--mobile-btn d-inline-block d-md-none"
           >
-            <i class="fas fa-search"></i>&nbsp;Search
+            <i className="fas fa-search"></i>&nbsp;Search
           </span>
 
           <Search />
@@ -120,10 +120,10 @@ export default function Navigation() {
         ) : (
           <Nav className="justify-content-end col-4 pr-0">
             <Link to="/saved" className="mr-4">
-              <i class="fas fa-star"></i>&nbsp;Saved
+              <i className="fas fa-star"></i>&nbsp;Saved
             </Link>
-            <Link onClick={logOut}>
-              <i class="fas fa-sign-out-alt"></i>&nbsp;Logout
+            <Link to="/" onClick={logOut}>
+              <i className="fas fa-sign-out-alt"></i>&nbsp;Logout
             </Link>
           </Nav>
         )}

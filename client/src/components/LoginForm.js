@@ -12,7 +12,7 @@ export default function LoginForm() {
   const passwordRef = useRef();
   const renderRedirect = () => {
     if (loggedIn) {
-      return <Redirect to="/" />;
+        return <Redirect to="/" />;
     }
   };
 
@@ -53,12 +53,15 @@ export default function LoginForm() {
           username: results.data.username,
         };
 
-        setLoggedIn(true);
+        
         window.localStorage.setItem(
           "currentUser",
           JSON.stringify(localStorageUser)
         );
         setSaved(results.data.id);
+        setLoggedIn(true);
+        
+        
       })
       .catch((err) => console.log(err));
   }

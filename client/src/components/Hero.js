@@ -13,8 +13,7 @@ export default function Hero() {
               <h1>SingAlong Karaoke</h1>
               {state.currentUser.id === 0 ? (
                 <p>
-                  This is a modified jumbotron that occupies the entire
-                  horizontal space of its parent.
+                  Save your favorite songs!
                 </p>
               ) : (
                 <p>Welcome {state.currentUser.username}!</p>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
 import { Redirect, Link } from "react-router-dom";
-import { SET_CURRENT_SONG, SET_SONG_RESULTS, LOADING } from "../utils/actions";
+import { SET_CURRENT_SONG, SET_SAVED_SONGS } from "../utils/actions";
 import API from "../utils/API";
 export default function HomeSaved() {
   const [state, dispatch] = useStoreContext();
@@ -10,14 +10,38 @@ export default function HomeSaved() {
   const [songDetail, setSongDetail] = useState([]);
 
   useEffect(() => {
-    const savedSongsLs = JSON.parse(localStorage.getItem("savedSongs"));
 
-    for (let i = 0; i < 4; i++) {
-      const song = savedSongsLs[i];
+    if (localStorage.getItem("savedSongs") && !state.saved.length) {
+      const savedSongsLs = JSON.parse(localStorage.getItem("savedSongs"));
 
-      getSongs(song);
+      dispatch({
+        type: SET_SAVED_SONGS,
+        saved: savedSongsLs,
+      });
+      for (let i = 0; i < savedSongsLs.length; i++) {
+        if (i > 3) {
+          return;
+        }
+        const song = savedSongsLs[i];
+
+        getSongs(song);
+        
+      }
+    } else if (state.saved) {
+
+      for (let i = 0; i < state.saved.length; i++) {
+        if (i > 3) {
+          return;
+        }
+        const song = state.saved[i];
+
+        getSongs(song);
+        
+      }
     }
+    
   }, []);
+
   function selectSong(result) {
     const song = {
       id: result.id,
@@ -76,7 +100,7 @@ export default function HomeSaved() {
             <small>
               &nbsp;
               <Link push to="/saved">
-                View All <i class="fas fa-angle-double-right"></i>
+                View All <i className="fas fa-angle-double-right"></i>
               </Link>
             </small>
           </h4>
@@ -98,13 +122,9 @@ export default function HomeSaved() {
                 className="result-song--container px-3 py-3"
                 style={{ backgroundImage: `url(${song.image})` }}
               >
-                <div class="result-song--container__essentials text-center my-auto mx-auto h-100">
+                <div className="result-song--container__essentials text-center my-auto mx-auto h-100">
                   <p className="result-song--title mb-2">{song.title}</p>
                   <p className="result-song--artist">{song.artist}</p>
-                  {/* <p className="result-song--genres">
-                    {" "}
-                    Genres: {song.styles.replace(/,/g, ", ")}
-                  </p> */}
 
                   {song.duo === 0 ? (
                     ""

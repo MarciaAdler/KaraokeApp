@@ -6,10 +6,11 @@ import HomeSaved from "../components/HomeSaved";
 import { useStoreContext } from "../utils/GlobalState";
 export default function Home() {
   const [state, dispatch] = useStoreContext();
+
   return (
     <div>
       <Hero />
-      {state.currentUser.id === 0 ? "" : <HomeSaved />}
+      {!state.saved.length ? "" : <HomeSaved />}
     </div>
   );
 }

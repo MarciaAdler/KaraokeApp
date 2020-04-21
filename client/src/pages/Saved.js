@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useStoreContext } from "../utils/GlobalState";
-import { LOADING, CLEAR_RESULTS, SET_CURRENT_SONG } from "../utils/actions";
-import ResultSong from "../components/ResultSong";
-import { Redirect } from "react-router-dom";
 import SavedSong from "../components/SavedSong";
-import { SET_CURRENT_USER, SET_SAVED_SONGS } from "../utils/actions";
+import { SET_SAVED_SONGS } from "../utils/actions";
 import API from "../utils/API";
 
 export default function Saved(props) {
