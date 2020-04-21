@@ -12,7 +12,7 @@ function HomeTopSaved() {
             md={3}
             key={song.id}
             className="my-3 px-4">
-                 <a href={song.link}>
+                 <a href={song.link} className="result-song--atag">
                 <div
                 className="result-song--container px-3 py-3"
                 style={{ backgroundImage: `url(${song.image})` }}

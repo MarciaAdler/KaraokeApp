@@ -136,6 +136,7 @@ h1,h2,h3,h4,h5,h6
       -webkit-transform: scale(1.1)
       -ms-transform: scale(1.1)
       transform: scale(1.1)
+      text-decoration: none
     &__essentials
       z-index: 10
       position: relative
@@ -156,6 +157,26 @@ h1,h2,h3,h4,h5,h6
     position: absolute
     bottom: 0
     right: 0
+  &--genres
+    text-shadow: 5px 5px 8px $black;
+    font-style: italic;
+  &--title
+    font-size: 21px;
+    text-shadow: 5px 5px 8px $black;
+    font-weight: bold;
+    &:hover
+      text-decoration: none
+  &--artist
+    font-size: 18px;
+    text-shadow: 5px 5px 8px $black;
+    font-weight: bold;
+    &:hover
+      text-decoration: none
+  &--atag
+    &:hover
+      text-decoration: none
+
+
 .current-song
   &--detail
     width: 50px

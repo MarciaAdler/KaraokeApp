@@ -13,7 +13,7 @@ export default function Hero() {
               <h1>SingAlong Karaoke</h1>
               {state.currentUser.id === 0 ? (
                 <p>
-                  Save your favorite songs!
+                  Search and save your favorite songs!
                 </p>
               ) : (
                 <p>Welcome {state.currentUser.username}!</p>
