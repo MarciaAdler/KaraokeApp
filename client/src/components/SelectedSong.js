@@ -15,6 +15,7 @@ import API from "../utils/API";
 
 export default function SelectedSong(props) {
   const [state, dispatch] = useStoreContext();
+
   function saveSong() {
     API.saveSong({
       userId: state.currentUser.id,
@@ -25,6 +26,15 @@ export default function SelectedSong(props) {
         updateSaved(state.currentUser.id);
       })
       .catch((err) => console.log(err));
+  }
+
+  function checkIfSaved(saved) {
+    for (let i = 0; i < saved.length;i++) {
+      if (saved[i].songId === state.currentSong.id) {
+        return <span><i class="fas fa-check"></i>&nbsp;Saved</span>
+      } 
+    }
+    return <span><i class="fas fa-star"></i>&nbsp;Save</span>
   }
 
   function updateSaved(userId) {
@@ -78,14 +88,20 @@ export default function SelectedSong(props) {
             />
           )}
           <br />
-          <button
+          {state.currentUser.id === 0 ? "" : 
+            <button
             className="btn current-song--saved-btn"
             onClick={() => {
               saveSong();
             }}
           >
-            <i class="fas fa-star"></i>&nbsp;Save
-          </button>
+              {/* <i class="fas fa-star"></i>&nbsp;Save */}
+              {checkIfSaved(state.saved)}
+            </button>
+          }
+
+          
+          
         </Media.Body>
       </Media>
     </Col>
