@@ -102,9 +102,9 @@ export default function Navigation() {
         <Nav className="justify-content-center col">
           <span
             onClick={showSearchInput}
-            className="search--mobile-btn d-inline-block d-md-none"
+            className="search--mobile-btn d-inline-block d-md-none text-center text-sm-left"
           >
-            <i className="fas fa-search"></i>&nbsp;Search
+            <i className={state.currentUser.id === 0 ? "d-none d-sm-inline-block fas fa-search" : "d-block d-sm-inline-block fas fa-search"}></i>&nbsp;Search
           </span>
 
           <Search />
@@ -112,18 +112,18 @@ export default function Navigation() {
 
         {state.currentUser.id === 0 ? (
           <Nav className="justify-content-end col-4 pr-0">
-            <Link to="/" className="mr-4">
+            <Link to="/" className="mr-2 mr-md-4">
               Login
             </Link>
             <Link to="/signup">Signup</Link>
           </Nav>
         ) : (
           <Nav className="justify-content-end col-4 pr-0">
-            <Link to="/saved" className="mr-4">
-              <i className="fas fa-star"></i>&nbsp;Saved
+            <Link to="/saved" className="mr-2 mr-md-4 text-center text-sm-left">
+              <i className={state.currentUser.id === 0 ? "fas fa-star" : "d-block d-sm-inline-block fas fa-star"}></i>&nbsp;Saved
             </Link>
-            <Link to="/" onClick={logOut}>
-              <i className="fas fa-sign-out-alt"></i>&nbsp;Logout
+            <Link to="/" onClick={logOut} className="text-center text-sm-left">
+              <i className={state.currentUser.id === 0 ? "fas fa-sign-out-alt" : "d-block d-sm-inline-block fas fa-sign-out-alt" }></i>&nbsp;Logout
             </Link>
           </Nav>
         )}
