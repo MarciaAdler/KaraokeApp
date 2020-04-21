@@ -17,7 +17,8 @@ router.get("/api/lyrics/:id", (req, res) => {
       process.env.MUSIC_KEY;
     axios.get(queryURL2).then((lyrics) => {
       res.send(lyrics.data.message.body.lyrics.lyrics_body);
-    });
+    })
+    .catch(err => console.log(err));
   });
 });
 
@@ -25,7 +26,8 @@ router.get("/api/song/:title", (req, res) => {
   const queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${req.params.title}-karaoke&type=video&key=${process.env.YOUTUBE_KEY}&videoEmbeddable=true`;
   axios.get(queryURL).then((response) => {
     res.send(response.data);
-  });
+  })
+  .catch(err => console.log(err));
 });
 
 router.route("/api/songs/:artist").get(resultsController.findAllByArtist);
