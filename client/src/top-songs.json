@@ -1,0 +1,50 @@
+[
+    {
+        "title": "Dancing Queen",
+        "artist": "ABBA",
+        "image": "https://images.genius.com/0f4f9ba8d7c5c957d6e3cd4cd5a0910e.300x300x1.png",
+        "link": "/song?title=Dancing%20Queen&&artist=ABBA"
+    },
+    {
+        "title": "Livin' On A Prayer",
+        "artist": "Bon Jovi",
+        "image": "https://images.genius.com/4152fc2742863eb89924fda84729483a.180x180x1.jpg",
+        "link": "/song?title=Livin%27%20On%20A%20Prayer&&artist=Bon%20Jovi"
+    },
+    {
+        "title": "Bohemian Rhapsody",
+        "artist": "Queen",
+        "image": "https://images.genius.com/ff9ddef65ab95da61354ce587748e2e9.300x300x1.png",
+        "link": "/song?title=Bohemian%20Rhapsody&&artist=Queen"
+    },
+    {
+        "title": "Sweet Caroline",
+        "artist": "Neil Diamond",
+        "image": "https://images.genius.com/23670937e20c3e8a85427bd22a07a072.300x300x1.jpg",
+        "link": "/song?title=Sweet%20Caroline&&artist=Neil%20Diamond"
+    },
+    {
+        "title": "Don't You Want Me",
+        "artist": "The Human League",
+        "image": "https://images.genius.com/f75378c0f02c7de307008832fa569bd8.300x300x1.jpg",
+        "link": "/song?title=Don%27t%20You%20Want%20Me&&artist=The%20Human%20League"
+    },
+    {
+        "title": "Say My Name",
+        "artist": "Destiny's Child",
+        "image": "https://images.genius.com/be977942da67b106f76965c574b5f133.300x300x1.jpg",
+        "link": "/song?title=Say%20My%20Name&&artist=Destiny%27s%20Child"
+    },
+    {
+        "title": "Lean On Me",
+        "artist": "Bill Withers",
+        "image": "https://images.genius.com/6e0c43bbb7b4ed0efe0e8f593dd42895.180x180x1.jpg",
+        "link": "/song?title=Lean%20On%20Me&&artist=Bill%20Withers"
+    },
+    {
+        "title": "Take On Me",
+        "artist": "a-ha",
+        "image": "https://images.genius.com/8a6e8ab8f96e4a9ac1a0ab0b3ce1be01.300x300x1.jpg",
+        "link": "/song?title=Take%20On%20Me&&artist=a-ha"
+    }
+]
