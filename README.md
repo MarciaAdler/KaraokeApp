@@ -1,5 +1,7 @@
 # SingAlong Karaoke
 
+<img src="./img/logged-out-home.png" alt="Logged Out Home Page">
+
 ## Overview
 
 This project is a React-based application that utilizes MySQL, Express, and Node.js to allow users to search and save their favorite karaoke songs.
@@ -15,6 +17,10 @@ This app allows users to:
 
 
 Link to project: https://shrouded-cliffs-43407.herokuapp.com/
+
+
+
+<img src="./img/search-results.png" alt="Search Results" >
 
 ## Technologies Used 
 
