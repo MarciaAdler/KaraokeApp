@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const axios = require("axios");
-const puppeteer = require("puppeteer");
 const api = require("genius-api");
 var genius = new api(process.env.GENIUS_CLIENT_ACCESS_TOKEN);
 
