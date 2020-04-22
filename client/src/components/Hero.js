@@ -9,7 +9,7 @@ export default function Hero() {
       <Jumbotron fluid className="home--hero justify-content-center">
         <Container className="home--container">
           <Row>
-            <Col>
+            <Col className="col-12 col-md-6">
               <h1>SingAlong Karaoke</h1>
               {state.currentUser.id === 0 ? (
                 <p>
@@ -20,7 +20,7 @@ export default function Hero() {
               )}
             </Col>
             {state.currentUser.id === 0 ? (
-              <Col className="login-form mx-auto">
+              <Col className="col-12 col-md-6 login-form mx-auto">
                 <LoginForm />
               </Col>
             ) : (

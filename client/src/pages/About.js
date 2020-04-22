@@ -6,7 +6,7 @@ export default function About() {
     <Container className="about py-3">
       <Row>
         <Col className="text-center">
-          <img className="logo" src={require("../img/logo.png")} />
+          <img className="logo w-100" src={require("../img/logo.png")} alt="SingAlong Karaoke" />
         </Col>
       </Row>
       <Row className="justify-content-center mt-3">
