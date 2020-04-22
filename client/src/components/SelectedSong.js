@@ -55,7 +55,7 @@ export default function SelectedSong(props) {
   }
   return (
     <Col md={6} key={state.currentSong.id}>
-      <Media>
+      <Media className="current-song--media">
         <img
           width={200}
           height={200}

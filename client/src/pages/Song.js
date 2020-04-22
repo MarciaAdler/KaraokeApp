@@ -110,7 +110,7 @@ function Song(props) {
             explicit={state.currentSong.explicit}
             styles={state.currentSong.styles}
           />
-          <Col lg={6}>
+          <Col md={6}>
             <h4>Lyrics</h4>
             <Lyrics lyrics={lyrics} path={path} />
           </Col>
