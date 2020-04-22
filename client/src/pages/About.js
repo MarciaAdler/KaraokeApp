@@ -35,11 +35,19 @@ export default function About() {
 
           <p>
             Credits: Duet icons made by{" "}
-            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+            <a
+              href="https://www.flaticon.com/authors/freepik"
+              title="Freepik"
+              target="_blank"
+            >
               Freepik
             </a>{" "}
             from{" "}
-            <a href="https://www.flaticon.com/" title="Flaticon">
+            <a
+              href="https://www.flaticon.com/"
+              title="Flaticon"
+              target="_blank"
+            >
               {" "}
               www.flaticon.com
             </a>
@@ -47,7 +55,10 @@ export default function About() {
 
           <p>
             Database songs from{" "}
-            <a href="https://www.karafun.com/karaoke-song-list.html">
+            <a
+              href="https://www.karafun.com/karaoke-song-list.html"
+              target="_blank"
+            >
               Karafun song list
             </a>
           </p>
